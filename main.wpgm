@@ -1,0 +1,13 @@
+import wollok.game.*
+
+import src.system.system.*
+
+
+import src.characters.snake.*
+
+program MetalGearNES {
+	config.load()	
+
+	game.addVisualCharacter(solidSnake)
+	game.start()
+}

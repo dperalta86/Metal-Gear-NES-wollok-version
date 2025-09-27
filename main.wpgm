@@ -6,8 +6,12 @@ import src.system.system.*
 import src.characters.snake.*
 
 program MetalGearNES {
-	config.load()	
+	// Configuración global del juego
+	config.load()
 
-	game.addVisualCharacter(solidSnake)
+	// Cargo nivel (inicia level 0)
+	levels.load_level()
+
+	// Inicio juego
 	game.start()
 }

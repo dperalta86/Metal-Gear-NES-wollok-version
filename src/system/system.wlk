@@ -11,6 +11,7 @@ object config {
     game.height(12)
     game.width(20)
 
+    game.boardGround("fondo.jpg")
     // Música en loop
     /*
      * Chiptune One.wav by CarlosCarty -- https://freesound.org/s/427513/ -- License: Attribution 4.0
@@ -18,14 +19,20 @@ object config {
     const mainSound = game.sound("427513__carloscarty__chiptune-one.wav")
     mainSound.shouldLoop(true)
     game.schedule(500, { mainSound.play()} )
-
-    // Fondo principal
-    game.boardGround("fondo.jpg")
   }
 }
 
 object levels {
-  method load_level() {
+
+  method loadLevel() {
+    //game.boardGround("fondo.jpg")
+
+    // TODO: Cargar objetos
+
+    // TODO: Cargar enemigos
+
+    // cargar snake
     game.addVisualCharacter(solidSnake)
+    
   }
 }

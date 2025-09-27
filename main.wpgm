@@ -1,16 +1,22 @@
 import wollok.game.*
 
 import src.system.system.*
-
-
 import src.characters.snake.*
+import src.levels.level01.*
 
 program MetalGearNES {
 	// Configuración global del juego
 	config.load()
 
-	// Cargo nivel (inicia level 0)
-	levels.load_level()
+	// Cargo nivel (inicia level 1)
+	//levels.loadLevel()
+
+	// Cargo area inicial
+	northArea.load()
+
+	// Posicionar Snake
+    solidSnake.position(game.at(7, 5))
+    game.addVisualCharacter(solidSnake)
 
 	// Inicio juego
 	game.start()

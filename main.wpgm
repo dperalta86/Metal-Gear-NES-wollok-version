@@ -6,15 +6,10 @@ import src.levels.areaManager.areaManager
 import src.levels.level01.*
 
 program MetalGearNES {
-	// Configuración global del juego
+	// Configuración global del juegod
 	config.load()
 
-	// Definir área inicial usando el areaManager
-	// (se encargará de cargar y posicionar Snake)
-	areaManager.changeArea(centralArea, game.at(7, 5))
-
-	// Agregar personaje al juego
-	game.addVisualCharacter(solidSnake)
+    levels.start()
 
 	/*
 	 * Controles básicos para pruebas
@@ -31,12 +26,6 @@ program MetalGearNES {
     })
     keyboard.d().onPressDo({ 
         solidSnake.moveTo(solidSnake.position().right(1)) 
-    })
-    
-    // Debug info
-    keyboard.space().onPressDo({
-        console.println("Área actual: " + areaManager.actualArea.name())
-        console.println("Posición: " + solidSnake.position())
     })
 
 	// Inicio juego

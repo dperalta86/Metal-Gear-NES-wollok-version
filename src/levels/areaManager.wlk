@@ -15,13 +15,13 @@ object areaManager {
     method verifyTransition() {
         const pos = solidSnake.position()
 
-        if (pos.y() <= 0) { // Norte
+        if (pos.y() <= 0) { 
             const destiny = actualArea.northConnection()
             if (destiny != null) {
                 self.changeArea(destiny, game.at(pos.x(), game.height() - 1))
             }
         }
-        else if (pos.y() >= game.height() - 1) { // Sur
+        else if (pos.y() >= game.height() - 1) { 
             const destiny = actualArea.southConnection()
             if (destiny != null) {
                 self.changeArea(destiny, game.at(pos.x(), 0))

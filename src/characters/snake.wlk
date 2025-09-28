@@ -1,4 +1,5 @@
-import src.levels.level01.areaManager
+import src.levels.level01.*
+import src.levels.areaManager.areaManager
 object solidSnake{
   var property position=game.origin()
   method image()="snake.png"

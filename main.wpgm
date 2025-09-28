@@ -2,26 +2,24 @@ import wollok.game.*
 
 import src.system.system.*
 import src.characters.snake.*
+import src.levels.areaManager.areaManager
 import src.levels.level01.*
 
 program MetalGearNES {
 	// Configuración global del juego
 	config.load()
 
-	// Cargo nivel (inicia level 1)
-	//levels.loadLevel()
+	// Definir área inicial usando el areaManager
+	// (se encargará de cargar y posicionar Snake)
+	areaManager.changeArea(centralArea, game.at(7, 5))
 
-	// Cargo area inicial
-	northArea.load()
-
-	// Posicionar Snake
-    solidSnake.position(game.at(7, 5))
-    game.addVisualCharacter(solidSnake)
+	// Agregar personaje al juego
+	game.addVisualCharacter(solidSnake)
 
 	/*
-	 * Siguiente bloque de codigo para pruebas...
+	 * Controles básicos para pruebas
+	 * TODO: luego mover a un inputManager
 	*/
-	    // Controles básicos
     keyboard.w().onPressDo({ 
         solidSnake.moveTo(solidSnake.position().up(1)) 
     })

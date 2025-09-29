@@ -4,7 +4,7 @@ object solidSnake{
   var property position=game.origin()
   var property lastMovement="right"
 
-  method image()="snake_"+self.getLastMovement()+".png"
+  method image()="snake_"+self.lastMovement()+".png"
 
   method update() { } // TODO: Implementar
   method esColisionable() = false
@@ -22,10 +22,4 @@ object solidSnake{
     return pos.x() >= 0 && pos.x() < game.width() && 
             pos.y() >= 0 && pos.y() < game.height()
   }
-
-  method setLastMovement(move) {
-    lastMovement = move    
-  }
-
-  method getLastMovement() = lastMovement 
 }

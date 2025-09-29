@@ -17,19 +17,19 @@ program MetalGearNES {
 	*/
     keyboard.w().onPressDo({ 
         solidSnake.moveTo(solidSnake.position().up(1))
-        solidSnake.setLastMovement("up")
+        solidSnake.lastMovement("up")
     })
     keyboard.s().onPressDo({ 
         solidSnake.moveTo(solidSnake.position().down(1)) 
-        solidSnake.setLastMovement("down")
+        solidSnake.lastMovement("down")
     })
     keyboard.a().onPressDo({ 
         solidSnake.moveTo(solidSnake.position().left(1)) 
-        solidSnake.setLastMovement("left")
+        solidSnake.lastMovement("left")
     })
     keyboard.d().onPressDo({ 
         solidSnake.moveTo(solidSnake.position().right(1)) 
-        solidSnake.setLastMovement("right")
+        solidSnake.lastMovement("right")
     })
 
 	// Inicio juego

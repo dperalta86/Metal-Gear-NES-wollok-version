@@ -4,18 +4,18 @@ import src.characters.guards.guards.Guard
 
 
 class StaticGuard inherits Guard {
-    method image()="static_guard.png"
+    method image() = "static_guard.png"
     
-    // Comportamiento específico para guardias estáticos
     override method comportamiento() {
-        // Los guardias estáticos no se mueven, solo vigilan su área
-        // Podríamos agregar lógica para que giren la cabeza o cambien de dirección ocasionalmente
+        // Los guardias estáticos no se mueven
+        // TODO: agregar rotación ocasional
     }
+    
     override method verificarDeteccion() {
-        // Lógica para detectar al jugador en un área fija
+        // TODO: detectar jugador en rango
     }
-
+    
     override method actualizarEstado() {
-
+        // TODO: cambiar estado según detección
     }
 }

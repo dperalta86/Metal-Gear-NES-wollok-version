@@ -1,3 +1,5 @@
+import src.characters.guards.patrollGuard.PatrolGuard
+import src.characters.guards.staticsGuard.*
 import src.system.system.*
 import wollok.game.*
 
@@ -50,12 +52,24 @@ object centralArea {
 }
 
 object northArea {
+    // Liista de guardias en el area
+    const guardias = []
     method name() = "North Area"
     method load() { 
         console.println("Cargando área norte") // Debug
         game.addVisual(northAreaBG)
         game.addVisualCharacter(solidSnake)
         // TODO: cargar enemigos y objetos
+
+        // Instancias de guardias
+        const staticGuard1 = new StaticGuard(position=game.at(5, 5))
+        const staticGuard2 = new StaticGuard(position=game.at(10, 7))
+        const patrolGuard1 = new PatrolGuard(position=game.at(3, 3))
+
+        // Agrego las "instancias" al area
+        game.addVisual(staticGuard1)
+        game.addVisual(staticGuard2)
+        game.addVisual(patrolGuard1)
     }
     method removeArea() { levels.clearGame() }
 

@@ -1,0 +1,266 @@
+classDiagram
+    %% ===== LEYENDA =====
+    %% Verde: Implementado ✅
+    %% Amarillo: Necesario para 1ra entrega ⚠️
+    %% Azul: Opcional/Futuro 🔮
+
+    %% ===== CLASE BASE =====
+    class GameObject {
+        <<abstract>>
+        +Position position
+        +image()* String
+        +update()
+        +esColisionable() Boolean
+    }
+    class GameObject:::implemented
+
+    %% ===== PERSONAJE PRINCIPAL =====
+    class SolidSnake {
+        <<object>>
+        +Position position
+        +String lastMovement
+        +Inventory inventory
+        +String state
+        +image() String
+        +update()
+        +esColisionable() Boolean
+        +moveTo(nuevaPos)
+        +canMove(pos) Boolean
+        +recogerItem(item)
+        +usarItem(tipo)
+    }
+    class SolidSnake:::partiallyImplemented
+
+    %% ===== JERARQUÍA DE GUARDIAS =====
+    class Guard {
+        <<abstract>>
+        +Position position
+        +String direction
+        +String state
+        +Number detectionRange
+        +Number visionAngle
+        +inicializarPosicion(_position)
+        +comportamiento()*
+        +verificarDeteccion()*
+        +actualizarEstado()*
+        +update()
+        +puedeVer(objetivo) Boolean
+        +alertar()
+    }
+    class Guard:::partiallyImplemented
+
+    class PatrolGuard {
+        +List~Position~ ruta
+        +Number indiceActual
+        +image() String
+        +comportamiento()
+        +verificarDeteccion()
+        +actualizarEstado()
+        +siguientePunto()
+    }
+    class PatrolGuard:::partiallyImplemented
+
+    class StaticGuard {
+        +Number tiempoRotacion
+        +image() String
+        +comportamiento()
+        +verificarDeteccion()
+        +actualizarEstado()
+        +rotar()
+    }
+    class StaticGuard:::partiallyImplemented
+
+    %% ===== SISTEMA DE ITEMS (NECESARIO) =====
+    class Item {
+        <<abstract>>
+        +Position position
+        +String nombre
+        +image() String
+        +usar(jugador)*
+        +esColisionable() Boolean
+    }
+    class Item:::needed
+
+    class Key {
+        +String keyId
+        +usar(jugador)
+        +image() String
+    }
+    class Key:::needed
+
+    class CardboardBox {
+        +Boolean enUso
+        +usar(jugador)
+        +esconder(jugador)
+        +image() String
+    }
+    class CardboardBox:::needed
+
+    class Weapon {
+        <<abstract>>
+        +Number danio
+        +Number alcance
+        +Number municion
+        +usar(jugador)
+        +disparar(direccion)
+    }
+    class Weapon:::future
+
+    %% ===== OBSTÁCULOS (NECESARIO) =====
+    class Obstacle {
+        <<abstract>>
+        +Position position
+        +Boolean bloqueaMovimiento
+        +Boolean bloqueaVision
+        +image() String
+        +esColisionable() Boolean
+    }
+    class Obstacle:::needed
+
+    class Wall {
+        +image() String
+        +esColisionable() Boolean
+    }
+    class Wall:::needed
+
+    class Door {
+        +String doorId
+        +Boolean cerrada
+        +abrir(llave)
+        +cerrar()
+        +image() String
+    }
+    class Door:::needed
+
+    %% ===== PROYECTILES (NECESARIO PARA 1RA ENTREGA) =====
+    class Bala {
+        +Position position
+        +String direction
+        +Number id
+        +Number velocidad
+        +image() String
+        +mover()
+        +impactar()
+        +esColisionable() Boolean
+    }
+    class Bala:::needed
+
+    %% ===== MANAGERS =====
+    class AreaManager {
+        <<object>>
+        +Area currentArea
+        +Map~String,Area~ areas
+        +verifyTransition()
+        +changeArea(areaName)
+        +getCurrentArea() Area
+        +limpiarArea()
+    }
+    class AreaManager:::implemented
+
+    class CollisionManager {
+        <<object>>
+        +verificarColision(obj1, obj2) Boolean
+        +obtenerColisionables(pos) List
+        +hayObstaculo(pos) Boolean
+    }
+    class CollisionManager:::needed
+
+    class DetectionSystem {
+        <<object>>
+        +calcularLineaVision(desde, hasta) Boolean
+        +hayObstaculosEnMedio(pos1, pos2) Boolean
+        +distancia(pos1, pos2) Number
+    }
+    class DetectionSystem:::needed
+
+    class GuardiaManager {
+        <<object>>
+        +List~Guard~ guardias
+        +crearGuardiasEstaticos(posiciones)
+        +crearGuardiasPatrulla(configs)
+        +iniciarIA()
+        +detenerIA()
+        +limpiarGuardias()
+    }
+    class GuardiaManager:::future
+
+    class InventoryManager {
+        <<object>>
+        +List~Item~ items
+        +Number capacidadMaxima
+        +agregarItem(item) Boolean
+        +usarItem(tipo)
+        +tieneItem(tipo) Boolean
+    }
+    class InventoryManager:::future
+
+    %% ===== ÁREA =====
+    class Area {
+        +String name
+        +Number width
+        +Number height
+        +String backgroundImage
+        +List~GameObject~ objects
+        +List~Guard~ guardias
+        +List~Obstacle~ obstaculos
+        +load()
+        +unload()
+        +crearGuardias()
+        +crearObstaculos()
+    }
+    class Area:::implemented
+
+    %% ===== UTILIDADES =====
+    class Direction {
+        <<object>>
+        +String nombre
+        +plus(pos) Position
+        +opuesta() Direction
+        +siguienteHorario() Direction
+    }
+    class Direction:::future
+
+    %% ===== RELACIONES PRINCIPALES =====
+    GameObject <|-- Guard : hereda
+    GameObject <|-- Item : hereda
+    GameObject <|-- Obstacle : hereda
+    GameObject <|-- Bala : hereda
+    
+    Guard <|-- PatrolGuard : hereda
+    Guard <|-- StaticGuard : hereda
+    
+    Item <|-- Key : hereda
+    Item <|-- CardboardBox : hereda
+    Item <|-- Weapon : hereda
+    
+    Obstacle <|-- Wall : hereda
+    Obstacle <|-- Door : hereda
+
+    %% ===== RELACIONES DE USO =====
+    SolidSnake ..> AreaManager : usa
+    SolidSnake ..> CollisionManager : consulta
+    SolidSnake ..> InventoryManager : usa
+    
+    Guard ..> SolidSnake : detecta
+    Guard ..> DetectionSystem : usa
+    Guard ..> CollisionManager : consulta
+    
+    PatrolGuard ..> Direction : usa
+    StaticGuard ..> Direction : usa
+    
+    Door ..> Key : requiere
+    
+    Bala ..> CollisionManager : consulta
+
+    %% ===== RELACIONES DE COMPOSICIÓN =====
+    AreaManager *-- Area : gestiona
+    Area o-- GameObject : contiene
+    Area o-- Guard : contiene
+    Area o-- Obstacle : contiene
+    Area o-- Item : contiene
+
+    %% ===== ESTILOS =====
+    classDef implemented fill:#90EE90,stroke:#2E7D32,stroke-width:3px,color:#000
+    classDef partiallyImplemented fill:#FFD700,stroke:#F57F17,stroke-width:3px,color:#000
+    classDef needed fill:#FFA500,stroke:#E65100,stroke-width:3px,color:#000
+    classDef future fill:#87CEEB,stroke:#1976D2,stroke-width:2px,color:#000

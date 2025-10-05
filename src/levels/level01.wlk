@@ -5,59 +5,41 @@ import wollok.game.*
 
 import src.characters.snake.*
 import src.system.visual.*
-
+import src.levels.areaManager.*
 
 
 /*
-    Mapa de areas del nivel 01 (Fase inicial)
-        ┌─────────────┐
-        │    North    │
-        │             |
-        └──────┬──────┘
-               │
-┌──────────────┼────┐─────────┐
-│         │         │         |
-│   West  │ Central │   East  | 
-│         │         │         |
-└──────────────┼────┘─────────┘
-               │
-        ┌──────┴──────┐
-        │   South     │
-        │             │
-        └─────────────┘
-
-   Conexiones:
-   - centralArea → norte, sur, este, oeste
-   - northArea   → central (sur)
-   - southArea   → central (norte)
-   - eastArea    → central (oeste)
-   - westArea    → central (este)
-*/
+ * Se cargan todos los eventos de cambio entre areas, en las posiciones correspondientes
+ * instanciando la clase ChangeAreaEvent.
+ * Se encuentra mapa completo con numeración de areas en assets/images/1280x768
+ */
+ const goToArea02 = new ChangeAreaEvent(
+    currentArea = area01,
+    position = game.at(5, 5),
+    nextDirection = "up",
+    goToArea = area02,
+    nextAreaPosition = game.at(1, 1)
+)
 
 // Defino las areas del nivel
-object centralArea {
-    method name() = "Central Area"
+object area01 {
+    method name() = "Area 01"
     method load() { 
-        console.println("Cargando área central") // Debug
-        game.addVisual(cetralAreaBG)
+        console.println("Cargando área 01") // Debug
+        game.addVisual(area01BG)
         game.addVisual(solidSnake)
         // TODO: cargar enemigos y objetos
     }
     method removeArea() { levels.clearGame() }
-
-    method northConnection() = northArea
-    method southConnection() = southArea
-    method eastConnection()  = eastArea
-    method westConnection()  = westArea
 }
 
-object northArea {
+object area02 {
     // Liista de guardias en el area
-    const guardias = []
-    method name() = "North Area"
+    const guards = []
+    method name() = "Area 02"
     method load() { 
-        console.println("Cargando área norte") // Debug
-        game.addVisual(northAreaBG)
+        console.println("Cargando área 02") // Debug
+        game.addVisual(area02BG)
         game.addVisual(solidSnake)
         // TODO: cargar enemigos y objetos
 
@@ -72,57 +54,37 @@ object northArea {
         game.addVisual(patrolGuard1)
     }
     method removeArea() { levels.clearGame() }
-
-    method northConnection() = null
-    method southConnection() = centralArea
-    method eastConnection()  = null
-    method westConnection()  = null
 }
 
-object southArea {
-    method name() = "South Area"
+object area03 {
+    method name() = "Area 03"
     method load() { 
-        console.println("Cargando área sur") // Debug
-        game.addVisual(southAreaBG)
+        console.println("Cargando área 03") // Debug
+        game.addVisual(area03BG)
         game.addVisual(solidSnake)
         // TODO: cargar enemigos y objetos
     }
     method removeArea() { levels.clearGame() }
-
-    method northConnection() = centralArea
-    method southConnection() = null
-    method eastConnection()  = null
-    method westConnection()  = null
 }
 
-object eastArea {
-    method name() = "East Area"
+object area04 {
+    method name() = "Area 04"
     method load() { 
-        game.addVisual(eastAreaBG)
-        console.println("Cargando área este") // Debug
+        game.addVisual(area04BG)
+        console.println("Cargando área 04") // Debug
         game.addVisual(solidSnake)
         // TODO: cargar enemigos y objetos
     }
     method removeArea() { levels.clearGame() }
-
-    method northConnection() = null
-    method southConnection() = null
-    method eastConnection()  = null
-    method westConnection()  = centralArea
 }
 
-object westArea {
-    method name() = "West Area"
+object area05 {
+    method name() = "Area 05"
     method load() { 
-        game.addVisual(westAreaBG)
-        console.println("Cargando área oeste") // Debug
+        game.addVisual(area05BG)
+        console.println("Cargando área 05") // Debug
         game.addVisual(solidSnake)
         // TODO: cargar enemigos y objetos
     }
     method removeArea() { levels.clearGame() }
-
-    method northConnection() = null
-    method southConnection() = null
-    method eastConnection()  = centralArea
-    method westConnection()  = null
 }

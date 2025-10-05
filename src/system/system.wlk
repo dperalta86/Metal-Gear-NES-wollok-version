@@ -38,7 +38,8 @@ object levels {
 
   method loadLevel1() {
     self.clearGame()
-    areaManager.changeArea(centralArea, game.at(2, 2))
+    solidSnake.position(game.at(1,12))
+    area01.load()
   }
 
   method clearGame() {

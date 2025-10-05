@@ -4,37 +4,40 @@ import src.levels.level01.*
  * Manejador de areas y transiciones entre ellas
  */
 class ChangeAreaEvent {
-    const property postion
+    const property currentArea // Area actual 
+    const property position // posición de cambio entre areas
     const property nextDirection // "up", "down", "left", "right"
     const property goToArea // Area a la que se quiere ir
+    const property nextAreaPosition // posición donde inicia en la nueva area 
     var isCharacterOnPosition = false
     var isCharacterOnDirection = false
 
     // Por mas que solo tengamos a Snake como personaje, utilizo "character" para futuras expansiones
     method canCharacterChangeArea(character) {
-        isCharacterOnPosition = character.position().equals(postion)
+        isCharacterOnPosition = character.position().equals(position)
         isCharacterOnDirection = character.lastMovement().equals(nextDirection)
         return isCharacterOnPosition && isCharacterOnDirection
     }
 
     method trychangeArea(character) {
         if (self.canCharacterChangeArea(character)) {
-            areaManager.changeArea(goToArea)
+            areaManager.changeArea(character, self)
         }
     }
 }
 
-/*
-object areaManager {
-    var actualArea = centralArea
 
-    method changeArea(newArea, initialPosition) {
+object areaManager {
+    var actualArea = area01
+
+    method changeArea(character, changeAreaEvent) {
         actualArea.removeArea()
-        actualArea = newArea
+        actualArea = changeAreaEvent.goToArea()
         actualArea.load()
-        solidSnake.position(initialPosition)
+        character.position(changeAreaEvent.nextAreaPosition())
     }
 
+    /*
     method verifyTransition() {
         const pos = solidSnake.position()
 
@@ -60,9 +63,5 @@ object areaManager {
             const destiny = actualArea.westConnection()
             if (destiny != null) {
                 self.changeArea(destiny, game.at(game.width() - 1, pos.y()))
-            }
-        }
+        } */
     }
-}
-
-*/

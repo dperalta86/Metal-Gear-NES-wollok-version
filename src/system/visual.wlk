@@ -20,27 +20,28 @@ const startMessage = new Visual(
     position = game.at(5,1)
 )
 
-const cetralAreaBG = new Visual(
+// Fondos en nivel 1
+const area01BG = new Visual(
     image = "level01-01.png",
     position = game.origin()
 )
 
-const northAreaBG = new Visual(
+const area02BG = new Visual(
     image = "level01-02.png",
     position = game.origin()
 )
 
-const southAreaBG = new Visual(
+const area03BG = new Visual(
     image = "level01-03.png",
     position = game.origin()
 )
 
-const eastAreaBG = new Visual(
+const area04BG = new Visual(
     image = "level01-04.png",
     position = game.origin()
 )
 
-const westAreaBG = new Visual(
+const area05BG = new Visual(
     image = "level01-05.png",
     position = game.origin()
 )

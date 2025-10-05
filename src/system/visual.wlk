@@ -21,26 +21,26 @@ const startMessage = new Visual(
 )
 
 const cetralAreaBG = new Visual(
-    image = "central.jpg",
+    image = "level01-01.png",
     position = game.origin()
 )
 
 const northAreaBG = new Visual(
-    image = "north.jpg",
+    image = "level01-02.png",
     position = game.origin()
 )
 
 const southAreaBG = new Visual(
-    image = "south.jpg",
+    image = "level01-03.png",
     position = game.origin()
 )
 
 const eastAreaBG = new Visual(
-    image = "east.jpg",
+    image = "level01-04.png",
     position = game.origin()
 )
 
 const westAreaBG = new Visual(
-    image = "west.jpg",
+    image = "level01-05.png",
     position = game.origin()
 )

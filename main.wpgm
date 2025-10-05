@@ -1,3 +1,4 @@
+import src.inputManager.inputManager.*
 import wollok.game.*
 
 import src.system.system.*
@@ -11,26 +12,8 @@ program MetalGearNES {
 
     levels.start()
 
-	/*
-	 * Controles básicos para pruebas
-	 * TODO: luego mover a un inputManager
-	*/
-    keyboard.w().onPressDo({ 
-        solidSnake.moveTo(solidSnake.position().up(1))
-        solidSnake.lastMovement("up")
-    })
-    keyboard.s().onPressDo({ 
-        solidSnake.moveTo(solidSnake.position().down(1)) 
-        solidSnake.lastMovement("down")
-    })
-    keyboard.a().onPressDo({ 
-        solidSnake.moveTo(solidSnake.position().left(1)) 
-        solidSnake.lastMovement("left")
-    })
-    keyboard.d().onPressDo({ 
-        solidSnake.moveTo(solidSnake.position().right(1)) 
-        solidSnake.lastMovement("right")
-    })
+    // Inicializo el manejador de inputs
+    keyboardManager.initKeyboard()
 
 	// Inicio juego
 	game.start()

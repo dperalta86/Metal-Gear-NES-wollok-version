@@ -34,7 +34,6 @@ object levels {
     game.addVisual(start)
     game.addVisual(startMessage)
 
-    keyboard.space().onPressDo({ self.loadLevel1() })
   }
 
   method loadLevel1() {

@@ -40,7 +40,7 @@ object centralArea {
     method load() { 
         console.println("Cargando área central") // Debug
         game.addVisual(cetralAreaBG)
-        game.addVisualCharacter(solidSnake)
+        game.addVisual(solidSnake)
         // TODO: cargar enemigos y objetos
     }
     method removeArea() { levels.clearGame() }
@@ -58,7 +58,7 @@ object northArea {
     method load() { 
         console.println("Cargando área norte") // Debug
         game.addVisual(northAreaBG)
-        game.addVisualCharacter(solidSnake)
+        game.addVisual(solidSnake)
         // TODO: cargar enemigos y objetos
 
         // Instancias de guardias
@@ -84,7 +84,7 @@ object southArea {
     method load() { 
         console.println("Cargando área sur") // Debug
         game.addVisual(southAreaBG)
-        game.addVisualCharacter(solidSnake)
+        game.addVisual(solidSnake)
         // TODO: cargar enemigos y objetos
     }
     method removeArea() { levels.clearGame() }
@@ -100,7 +100,7 @@ object eastArea {
     method load() { 
         game.addVisual(eastAreaBG)
         console.println("Cargando área este") // Debug
-        game.addVisualCharacter(solidSnake)
+        game.addVisual(solidSnake)
         // TODO: cargar enemigos y objetos
     }
     method removeArea() { levels.clearGame() }
@@ -116,7 +116,7 @@ object westArea {
     method load() { 
         game.addVisual(westAreaBG)
         console.println("Cargando área oeste") // Debug
-        game.addVisualCharacter(solidSnake)
+        game.addVisual(solidSnake)
         // TODO: cargar enemigos y objetos
     }
     method removeArea() { levels.clearGame() }

@@ -13,7 +13,7 @@ object solidSnake{
     if (self.canMove(nuevaPos)) {
         position = nuevaPos
         // Verificar transiciones después del movimiento
-        areaManager.verifyTransition()
+        goToArea02.trychangeArea(self)
     }
   }
   

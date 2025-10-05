@@ -1,7 +1,30 @@
-import src.characters.snake.solidSnake
 import src.levels.level01.*
 
+/*
+ * Manejador de areas y transiciones entre ellas
+ */
+class ChangeAreaEvent {
+    const property postion
+    const property nextDirection // "up", "down", "left", "right"
+    const property goToArea // Area a la que se quiere ir
+    var isCharacterOnPosition = false
+    var isCharacterOnDirection = false
 
+    // Por mas que solo tengamos a Snake como personaje, utilizo "character" para futuras expansiones
+    method canCharacterChangeArea(character) {
+        isCharacterOnPosition = character.position().equals(postion)
+        isCharacterOnDirection = character.lastMovement().equals(nextDirection)
+        return isCharacterOnPosition && isCharacterOnDirection
+    }
+
+    method trychangeArea(character) {
+        if (self.canCharacterChangeArea(character)) {
+            areaManager.changeArea(goToArea)
+        }
+    }
+}
+
+/*
 object areaManager {
     var actualArea = centralArea
 
@@ -41,3 +64,5 @@ object areaManager {
         }
     }
 }
+
+*/

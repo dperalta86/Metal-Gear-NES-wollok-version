@@ -12,22 +12,22 @@ import wollok.game.*
 */
 object movement {
     method moveUp(character) {
-        character.moveTo(character.position().up(1))
         character.lastMovement("up")
+        character.moveTo(character.position().up(1))
     }
 
     method moveDown(character) {
-        character.moveTo(character.position().down(1))
         character.lastMovement("down")
+        character.moveTo(character.position().down(1))
     }
 
     method moveLeft(character) {
-        character.moveTo(character.position().left(1))
         character.lastMovement("left")
+        character.moveTo(character.position().left(1))
     }
 
     method moveRight(character) {
-        character.moveTo(character.position().right(1))
         character.lastMovement("right")
+        character.moveTo(character.position().right(1))
     }
 }

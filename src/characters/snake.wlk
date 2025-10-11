@@ -10,11 +10,10 @@ object solidSnake{
   method esColisionable() = false
 
   method moveTo(nuevaPos) {
-    goToArea02.trychangeArea(self)
     if (self.canMove(nuevaPos)) {
         position = nuevaPos
-        // Verificar transiciones después del movimiento
     }
+    areaManager.update(self) // Evento para verificar si se cambia de area
   }
   
   method canMove(pos) {

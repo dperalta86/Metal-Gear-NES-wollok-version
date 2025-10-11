@@ -20,7 +20,26 @@ class ChangeAreaEvent {
     }
 }
 
+object areaManager {
+    var actualArea = area01
 
+    method update(character) {
+        const event = actualArea.checkAreaChange(character)
+        if (event != null) {
+            self.changeArea(character, event)
+        }
+    }
+
+    method changeArea(character, event) {
+        actualArea.removeArea()
+        actualArea = event.goToArea()
+        actualArea.load()
+        character.position(event.nextAreaPosition())
+    }
+}
+
+
+/*
 object areaManager {
     var actualArea = area01
 
@@ -31,7 +50,7 @@ object areaManager {
         character.position(changeAreaEvent.nextAreaPosition())
     }
 
-    /*
+
     method verifyTransition() {
         const pos = solidSnake.position()
 
@@ -57,5 +76,7 @@ object areaManager {
             const destiny = actualArea.westConnection()
             if (destiny != null) {
                 self.changeArea(destiny, game.at(game.width() - 1, pos.y()))
-        } */
+        } 
     }
+
+*/

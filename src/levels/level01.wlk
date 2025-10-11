@@ -22,7 +22,44 @@ import src.levels.areaManager.*
 )
 
 // Defino las areas del nivel
+// Ver si conviene hacer una clase abstracta Area y que las areas hereden de ella
+class Area {
+    const property changeEvents = [] // Lista de eventos de cambio de area
+    var property name = ""
+    const background // Imagen de fondo del area 
+
+    method load() { 
+        console.println("Cargando área: " + name) // Debug
+        game.addVisual(background)
+        game.addVisual(solidSnake)
+    }
+    method removeArea() { levels.clearGame() }
+
+    method addChangeEvent(event) {
+        changeEvents.add(event)
+    }
+
+    method checkAreaChange(character) {
+        return changeEvents.findOrDefault({e => e.canCharacterChangeArea(character)}, null)
+    }
+}
+
+// Instancias de areas del nivel 1
+const area01 = new Area(
+    background = area01BG,
+    name = "Area 01",
+    changeEvents = [goToArea02]
+)
+
+const area02 = new Area(
+    background = area02BG,
+    name = "Area 02",
+    changeEvents = [] // Agregar eventos de cambio de area
+)
+
+/*
 object area01 {
+    const changeEvents = []
     method name() = "Area 01"
     method load() { 
         console.println("Cargando área 01") // Debug
@@ -31,6 +68,14 @@ object area01 {
         // TODO: cargar enemigos y objetos
     }
     method removeArea() { levels.clearGame() }
+
+        method addChangeEvent(event) {
+        changeEvents.add(event)
+    }
+
+    method checkAreaChange(character) {
+        return changeEvents.findOrDefault({e => e.canCharacterChangeArea(character)}, null)
+    }
 }
 
 object area02 {
@@ -43,6 +88,7 @@ object area02 {
         game.addVisual(solidSnake)
         // TODO: cargar enemigos y objetos
 
+    
         // Instancias de guardias
         const staticGuard1 = new StaticGuard(position=game.at(5, 5))
         const staticGuard2 = new StaticGuard(position=game.at(10, 7))
@@ -52,6 +98,7 @@ object area02 {
         game.addVisual(staticGuard1)
         game.addVisual(staticGuard2)
         game.addVisual(patrolGuard1)
+        
     }
     method removeArea() { levels.clearGame() }
 }
@@ -88,3 +135,4 @@ object area05 {
     }
     method removeArea() { levels.clearGame() }
 }
+*/

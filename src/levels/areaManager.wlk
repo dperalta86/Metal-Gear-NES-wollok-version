@@ -8,21 +8,15 @@ class ChangeAreaEvent {
     const property position // posición de cambio entre areas
     const property nextDirection // "up", "down", "left", "right"
     const property goToArea // Area a la que se quiere ir
-    const property nextAreaPosition // posición donde inicia en la nueva area 
-    var isCharacterOnPosition = false
-    var isCharacterOnDirection = false
+    const property nextAreaPosition // posición donde inicia en la nueva area
+
+    // var isCharacterOnPosition = false
+    // var isCharacterOnDirection = false
 
     // Por mas que solo tengamos a Snake como personaje, utilizo "character" para futuras expansiones
     method canCharacterChangeArea(character) {
-        isCharacterOnPosition = character.position().equals(position)
-        isCharacterOnDirection = character.lastMovement().equals(nextDirection)
-        return isCharacterOnPosition && isCharacterOnDirection
-    }
-
-    method trychangeArea(character) {
-        if (self.canCharacterChangeArea(character)) {
-            areaManager.changeArea(character, self)
-        }
+        return character.position().equals(position) &&
+               character.lastMovement().equals(nextDirection)
     }
 }
 

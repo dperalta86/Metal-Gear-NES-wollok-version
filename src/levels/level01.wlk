@@ -40,7 +40,7 @@ const area01 = new Area(
 const area02 = new Area(
     background = area02BG,
     name = "Area 02",
-    changeEvents = []
+    changeEvents = [goToArea01]
 )
 
 const area03 = new Area(

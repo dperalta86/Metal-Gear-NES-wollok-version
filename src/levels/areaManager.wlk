@@ -42,6 +42,9 @@ class ChangeAreaEvent {
  * instanciando la clase ChangeAreaEvent.
  * Se encuentra mapa completo con numeración de areas en assets/images/1280x768
  */
+
+ // Ver si es necesario hacer mas descriptivo el nombre del objeto (ej: changeToArea02FromArea01Up)
+ // Eventos de cambio de area 01
  const goToArea02 = new ChangeAreaEvent(
     currentArea = area01,
     position = game.at(12, 11),
@@ -66,6 +69,16 @@ const goToArea03B = new ChangeAreaEvent(
     nextAreaPosition = game.at(19, 9)
 )
 
+// Eventos de cambio de area 02
+ const goToArea01 = new ChangeAreaEvent(
+    currentArea = area02,
+    position = game.at(12, 1),
+    nextDirection = "down",
+    goToArea = area01,
+    nextAreaPosition = game.at(12, 11)
+)
+
+// Eventos de cambio de area 03
 const goToArea01A = new ChangeAreaEvent(
     currentArea = area03,
     position = game.at(19, 5),

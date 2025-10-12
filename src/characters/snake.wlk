@@ -1,8 +1,8 @@
 import src.levels.level01.*
 import src.levels.areaManager.areaManager
 object solidSnake{
-  var property position=game.origin()
-  var property lastMovement="right"
+  var property position = game.origin()
+  var property lastMovement = ""
 
   method image()="snake_"+self.lastMovement()+".png"
 
@@ -19,6 +19,6 @@ object solidSnake{
   method canMove(pos) {
     // TODO: verificarColisiones(pos)
     return pos.x() >= 0 && pos.x() < game.width() && 
-            pos.y() >= 1 && pos.y() < game.height()
+            pos.y() >= 0 && pos.y() < game.height()
   }
 }

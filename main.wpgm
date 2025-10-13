@@ -5,6 +5,7 @@ import src.system.system.*
 import src.characters.snake.*
 import src.levels.areaManager.areaManager
 import src.levels.level01.*
+import src.system.colissions.colissionHandler
 
 program MetalGearNES {
 	// Configuración global del juegod
@@ -14,6 +15,9 @@ program MetalGearNES {
 
     // Inicializo el manejador de inputs
     keyboardManager.initKeyboard()
+
+	// Iniciliazo el manejador de colisiones
+	colissionHandler.initialize()
 
 	// Inicio juego
 	game.start()

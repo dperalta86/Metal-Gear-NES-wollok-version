@@ -2,16 +2,20 @@ import src.levels.level01.*
 import src.levels.areaManager.areaManager
 object solidSnake{
   var property position = game.origin()
+  var property lastPosition = game.origin()
   var property lastMovement = ""
 
   method image()="snake_"+self.lastMovement()+".png"
 
   method update() { } // TODO: Implementar
-  method esColisionable() = false
+  method collidedForStaticGuard(){
+    position = lastPosition
+  }
 
   method moveTo(nuevaPos) {
     if (self.canMove(nuevaPos)) {
-        position = nuevaPos
+      lastPosition = position
+      position = nuevaPos
     }
     areaManager.update(self) // Evento para verificar si se cambia de area
   }

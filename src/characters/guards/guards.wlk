@@ -9,7 +9,7 @@ class Guard {
     var property state = "patrolling" // Por el momento no se va a utilizar...
     var property detectionRange = 3 // Idem
 
-    method image() = ""    
+    method image() 
     
     // Método para inicializar posición
     method inicializarPosicion(_position) {

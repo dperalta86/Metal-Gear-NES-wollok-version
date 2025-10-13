@@ -1,4 +1,4 @@
-import src.characters.guards.patrollGuard.PatrolGuard
+import src.characters.guards.patrollGuard.*
 import src.characters.guards.staticsGuard.*
 import src.system.system.*
 import wollok.game.*
@@ -11,13 +11,21 @@ import src.levels.areaManager.*
 // Ver si conviene hacer una clase abstracta Area y que las areas hereden de ella
 class Area {
     const property changeEvents = [] // Lista de eventos de cambio de area
+    const property guards = [] // Lista de guardias
     var property name = ""
     const background // Imagen de fondo del area 
 
     method load() { 
-        console.println("Cargando área: " + name) // Debug
+        // Cargo el fondo del area
         game.addVisual(background)
+
+        // Cargo a solidSnake
         game.addVisual(solidSnake)
+
+        // Agrego los guardias (statics y patroll)
+        guards.forEach { guard => game.addVisual(guard) }
+
+        // TODO: Agregar objetos
     }
     method removeArea() { levels.clearGame() }
 
@@ -34,25 +42,29 @@ class Area {
 const area01 = new Area(
     background = area01BG,
     name = "Area 01",
-    changeEvents = [goToArea02, goToArea03A, goToArea03B]
+    changeEvents = [goToArea02, goToArea03A, goToArea03B],
+    guards = [static01, patroll01]
 )
 
 const area02 = new Area(
     background = area02BG,
     name = "Area 02",
-    changeEvents = [goToArea01]
+    changeEvents = [goToArea01],
+    guards = [static02, patroll02]
 )
 
 const area03 = new Area(
     background = area03BG,
     name = "Area 03",
-    changeEvents = [goToArea01A, goToArea01B] // Agregar eventos de cambio de area
+    changeEvents = [goToArea01A, goToArea01B],
+    guards = [static03A, static03B, patroll03]
 )
 
 const area04 = new Area(
     background = area04BG,
     name = "Area 04",
-    changeEvents = [] // Agregar eventos de cambio de area
+    changeEvents = [], // Agregar eventos de cambio de area
+    guards = [patroll04A, patroll04B]
 )
 
 const area05 = new Area(

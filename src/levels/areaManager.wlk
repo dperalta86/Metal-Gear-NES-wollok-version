@@ -16,6 +16,7 @@ object areaManager {
         actualArea = event.goToArea()
         actualArea.load()
         character.position(event.nextAreaPosition())
+        //console.println(character.position()) // para debug
     }
 }
 
@@ -42,6 +43,8 @@ class ChangeAreaEvent {
  * instanciando la clase ChangeAreaEvent.
  * Se encuentra mapa completo con numeración de areas en assets/images/1280x768
  */
+
+ //VER: Estos cambios no deberian de estar definidos dentro del level01.wlk?
 
  // Ver si es necesario hacer mas descriptivo el nombre del objeto (ej: changeToArea02FromArea01Up)
  // Eventos de cambio de area 01

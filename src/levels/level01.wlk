@@ -1,3 +1,4 @@
+import src.gameObject.GameObject
 import src.characters.guards.patrollGuard.PatrolGuard
 import src.characters.guards.staticsGuard.*
 import src.system.system.*
@@ -13,11 +14,13 @@ class Area {
     const property changeEvents = [] // Lista de eventos de cambio de area
     var property name = ""
     const background // Imagen de fondo del area 
+    const invisibleObjects=[]
 
     method load() { 
         console.println("Cargando área: " + name) // Debug
         game.addVisual(background)
         game.addVisual(solidSnake)
+        self.addInvisibleObjects()
     }
     method removeArea() { levels.clearGame() }
 
@@ -28,38 +31,59 @@ class Area {
     method checkAreaChange(character) {
         return changeEvents.findOrDefault({e => e.canCharacterChangeArea(character)}, null)
     }
+
+    method addInvisibleObjects(){
+        invisibleObjects.forEach({obj => game.addVisual(obj)})
+    }
 }
 
 // Instancias de areas del nivel 1
 const area01 = new Area(
     background = area01BG,
     name = "Area 01",
-    changeEvents = [goToArea02, goToArea03A, goToArea03B]
+    changeEvents = [goToArea02, goToArea03A, goToArea03B],
+    invisibleObjects=[invisible01]
 )
 
 const area02 = new Area(
     background = area02BG,
     name = "Area 02",
-    changeEvents = [goToArea01]
+    changeEvents = [goToArea01],
+    invisibleObjects=[]
 )
 
 const area03 = new Area(
     background = area03BG,
     name = "Area 03",
-    changeEvents = [goToArea01A, goToArea01B] // Agregar eventos de cambio de area
+    changeEvents = [goToArea01A, goToArea01B], // Agregar eventos de cambio de area
+    invisibleObjects=[]
 )
 
 const area04 = new Area(
     background = area04BG,
     name = "Area 04",
-    changeEvents = [] // Agregar eventos de cambio de area
+    changeEvents = [], // Agregar eventos de cambio de area
+    invisibleObjects=[] 
+    
 )
 
 const area05 = new Area(
     background = area05BG,
     name = "Area 05",
-    changeEvents = [] // Agregar eventos de cambio de area
+    changeEvents = [], // Agregar eventos de cambio de area
+    invisibleObjects=[]
 )
+
+class Invisible inherits GameObject{
+    override method image()=null
+    override method update()=null
+    override method esColisionable() = true
+}
+
+const invisible01 = new Invisible(
+    position=game.at(12,3)
+)
+
 
 /*
 object area01 {

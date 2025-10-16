@@ -9,7 +9,7 @@ object solidSnake{
   method image()="snake_"+self.lastMovement()+".png"
 
   method update() { } // TODO: Implementar
-  method collidedForStaticGuard(guard){
+  method collidedForGuard(guard){
     console.println("snake colisionó un guardia...")
     if (guard.canBeCollided()){
       position = lastPosition
@@ -17,10 +17,12 @@ object solidSnake{
 
   }
 
-  method moveTo(nuevaPos) {
-    if (self.canMove(nuevaPos)) {
+  method moveTo(newPos) {
+    // Envío mensaja a collisionHandler
+    // si no hay colisión, snake se mueve
+    if (self.canMove(newPos)) {
       lastPosition = position
-      position = nuevaPos
+      position = newPos
     }
     areaManager.update(self) // Evento para verificar si se cambia de area
   }
@@ -35,8 +37,7 @@ object solidSnake{
   // }
   
   method canMove(pos) {
-    // TODO: verificarColisiones(pos)
     return pos.x() >= 0 && pos.x() < game.width() && 
-            pos.y() >= 0 && pos.y() < game.height()&& !colissionHandler.verifyColission(pos)
+        pos.y() >= 0 && pos.y() < game.height()&& !colissionHandler.verifyColission(pos)
   }
-}
+  }

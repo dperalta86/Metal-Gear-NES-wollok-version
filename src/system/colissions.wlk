@@ -2,21 +2,16 @@ import src.characters.*
 import src.levels.level01.*
 
 object colissionHandler {
+    const allRegisteredAreas = [area01, area02, area03, area04, area05]
     method initialize() {
-    // Por ahora, el comportamiento ante una colisión es el mismo, sin importar el tipo de guardia
-    // Por ahora, el comportamiento ante una colisión es el mismo, sin importar el tipo de guardia
-        area01.guards().forEach{
-            guard => game.whenCollideDo(guard, { gameObject => gameObject.collidedForStaticGuard(guard) } )
+        allRegisteredAreas.forEach { area => self.registerCollisionFor(area) }
+    }
+
+    method registerCollisionFor(area){
+        area.guards().forEach { guard =>
+            game.whenCollideDo(guard, { gameObject => gameObject.collidedForGuard(guard) })
         }
-        area02.guards().forEach{
-            guard => game.whenCollideDo(guard, { gameObject => gameObject.collidedForStaticGuard(guard) } )
-        }
-        area03.guards().forEach{
-            guard => game.whenCollideDo(guard, { gameObject => gameObject.collidedForStaticGuard(guard) } )
-        }
-        area04.guards().forEach{
-            guard => game.whenCollideDo(guard, { gameObject => gameObject.collidedForStaticGuard(guard) } )
-        }
+        // TODO: Agregar elementos "pickup" u otros guardias
     }
 
     method loadAread(area) {
@@ -32,9 +27,7 @@ object colissionHandler {
     }
 
     method verifyColission(pos){
-        const colisiona=game.getObjectsIn(pos).any(
-			{ obj => obj.esColisionable() }
-		)
-    return colisiona
-  }
+        return game.getObjectsIn(pos).any(
+			{ obj => obj.esColisionable() })
+    }
 }

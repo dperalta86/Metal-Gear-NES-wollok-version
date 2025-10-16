@@ -12,11 +12,6 @@ class Guard {
 
     method collidedForSnake() { console.println(self.toString() + " colisionado por Snake!")}
     method image() 
-    
-    // Método para inicializar posición
-    method inicializarPosicion(_position) {
-        position = _position
-    }
 
     method canBeCollided(valor) {
         canBeCollided = valor

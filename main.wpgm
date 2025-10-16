@@ -20,7 +20,7 @@ program MetalGearNES {
 	colissionHandler.initialize()
 
 	// Inicializo movimientos de los guardias
-	movement.launchGuardsMovements()
+	movement.launchGuardsBehavior()
 
 	// Inicializo levels
 	levels.start()

@@ -6,28 +6,27 @@ import src.characters.guards.guards.Guard
 class PatrollGuard inherits Guard {
     override method image() = "patroll_guard.png"
     
-    override method comportamiento() {
-        game.schedule(500, { movement.moveUp(self) })
-        game.schedule(1000, { movement.moveRight(self) })
-        game.schedule(1500, { movement.moveRight(self) })
-        game.schedule(2000, { movement.moveRight(self) })
-        game.schedule(2500, { movement.moveDown(self) })
-        game.schedule(3000, { movement.moveDown(self) })
-        game.schedule(3500, { movement.moveLeft(self) })
-        game.schedule(4000, { movement.moveLeft(self) })
-        game.schedule(4500, { movement.moveLeft(self) })
-        game.schedule(5000, { movement.moveLeft(self) })
-        game.schedule(5500, { movement.moveUp(self) })
-        game.schedule(6000, { movement.moveRight(self) })        
+    override method move() {
+        const nextMove = self.getMovement()
+        nextMove.apply()
+    }
+ 
+    override method verifyDetection() { }
+    override method updateState() { }
+
+    method getMovement() {
+        // Repito movimientos horizontales para darle mas peso en la probabilidad...
+        const movements = [
+            { movement.moveUp(self) },
+            { movement.moveDown(self) },
+            { movement.moveLeft(self) },
+            { movement.moveLeft(self) },
+            { movement.moveRight(self) },
+            { movement.moveRight(self) }
+        ]
+        return movements.anyOne() // elige una closure al azar
     }
     
-    override method verificarDeteccion() {
-        // TODO: detectar jugador en rango
-    }
-    
-    override method actualizarEstado() {
-        // TODO: cambiar estado según detección
-    }
 }
 
 // Instancio guardias de nivel 01

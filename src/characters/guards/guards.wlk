@@ -33,13 +33,13 @@ class Guard {
     }
     
     method update() {
-        self.comportamiento()
-        self.verificarDeteccion()
-        self.actualizarEstado()
+        self.move()
+        self.verifyDetection()
+        self.updateState()
     }
     // Comportamiento polimórfico (Interfaz)
-    method comportamiento() // Implementado en subclases    
-    method verificarDeteccion() // Lógica para detectar al jugador    
-    method actualizarEstado() // Lógica para actualizar el estado    
+    method move() // Implementado en subclases    
+    method verifyDetection() // Lógica para detectar al jugador    
+    method updateState() // Lógica para actualizar el estado    
 
 }

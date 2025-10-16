@@ -34,17 +34,14 @@ object movement {
         pos.y() >= 0 && pos.y() < game.height()
   }
 
-    // Cada 10 segundos (el ciclo de patrulla es de 6s) reinicio el movimiento de todos los guardias
-    // TODO: Ver si se puede mejorar performance activando/desactivando movimiento de los guardias
-    // según el area donde se encuentre Snake...
-    method launchGuardsMovements(){
-        game.onTick(10000, "guardsMovements", { self.restartGuardsMovements() })
+    method launchGuardsBehavior(){
+        game.onTick(500, "guardsBehavior", { self.updateGuardsBehavior() })
     }
 
-    method restartGuardsMovements() {
+    method updateGuardsBehavior() {
         allRegisteredAreas.forEach { area =>
             area.guards().forEach { guard =>
-                guard.comportamiento()
+                guard.update()
             }
         }
     }

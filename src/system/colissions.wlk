@@ -2,7 +2,6 @@ import src.characters.*
 import src.levels.level01.*
 
 object colissionHandler {
-    const allRegisteredAreas = [area01, area02, area03, area04, area05]
     method initialize() {
         allRegisteredAreas.forEach { area => self.registerCollisionFor(area) }
     }

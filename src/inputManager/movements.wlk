@@ -1,16 +1,12 @@
 import src.characters.snake.solidSnake
 import wollok.game.*
 import src.system.colissions.colissionHandler
+import src.levels.level01.*
+
 
 
 /*
  * Definición base para todos los movimientos de todos los personajes.
- * idea: Tener un objeto movement que defina la dirección y la distancia
- *      recibe un character y lo mueve en la dirección indicada.
- *      Verifica colisiones con paredes y otros personajes
- *      actualiza la posición del character.
- *      Puede tener efectos de sonido asociados (pasos, etc).
- *      Verificar si el movimiento genera un cambio de área
 */
 object movement {
     method moveUp(character) {
@@ -37,4 +33,19 @@ object movement {
         return pos.x() >= 0 && pos.x() < game.width() && 
         pos.y() >= 0 && pos.y() < game.height()
   }
+
+    // Cada 10 segundos (el ciclo de patrulla es de 6s) reinicio el movimiento de todos los guardias
+    // TODO: Ver si se puede mejorar performance activando/desactivando movimiento de los guardias
+    // según el area donde se encuentre Snake...
+    method launchGuardsMovements(){
+        game.onTick(10000, "guardsMovements", { self.restartGuardsMovements() })
+    }
+
+    method restartGuardsMovements() {
+        allRegisteredAreas.forEach { area =>
+            area.guards().forEach { guard =>
+                guard.comportamiento()
+            }
+        }
+    }
 }

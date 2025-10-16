@@ -94,3 +94,5 @@ const area05 = new Area(
     changeEvents = [], // Agregar eventos de cambio de area
     invisibleObjects=[]
 )
+
+const allRegisteredAreas = [area01, area02, area03, area04, area05]

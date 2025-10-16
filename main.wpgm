@@ -5,6 +5,8 @@ import src.system.system.*
 import src.characters.snake.*
 import src.levels.areaManager.areaManager
 import src.levels.level01.*
+import src.inputManager.movements.*
+
 import src.system.colissions.colissionHandler
 
 program MetalGearNES {
@@ -16,6 +18,9 @@ program MetalGearNES {
 
 	// Iniciliazo el manejador de colisiones
 	colissionHandler.initialize()
+
+	// Inicializo movimientos de los guardias
+	movement.launchGuardsMovements()
 
 	// Inicializo levels
 	levels.start()

@@ -7,6 +7,8 @@ object solidSnake{
   var property lastPosition = game.origin()
   var property lastMovement = "right"
 
+  method esColisionable() = false
+
   method image()="snake_"+self.lastMovement()+".png"
 
   method update() { } // TODO: Implementar

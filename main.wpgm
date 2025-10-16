@@ -11,13 +11,14 @@ program MetalGearNES {
 	// Configuración global del juegod
 	config.load()
 
-    levels.start()
-
     // Inicializo el manejador de inputs
     keyboardManager.initKeyboard()
 
 	// Iniciliazo el manejador de colisiones
 	colissionHandler.initialize()
+
+	// Inicializo levels
+	levels.start()
 
 	// Inicio juego
 	game.start()

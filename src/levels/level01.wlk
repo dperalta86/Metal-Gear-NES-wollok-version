@@ -2,6 +2,8 @@ import src.system.colissions.*
 import src.gameObject.GameObject
 import src.characters.guards.patrollGuard.*
 import src.characters.guards.staticsGuard.*
+import src.obstacles.invisibleObject.*
+
 
 import src.characters.snake.*
 import src.system.system.*
@@ -58,7 +60,7 @@ const area01 = new Area(
     name = "Area 01",
     changeEvents = [goToArea02, goToArea03A, goToArea03B],
     guards = [static01, patroll01],
-    invisibleObjects=[invisible01]
+    invisibleObjects=invisibleArea01
 )
 
 const area02 = new Area(
@@ -91,14 +93,4 @@ const area05 = new Area(
     name = "Area 05",
     changeEvents = [], // Agregar eventos de cambio de area
     invisibleObjects=[]
-)
-
-class Invisible inherits GameObject{
-    override method image()=null
-    override method update()=null
-    override method esColisionable() = true
-}
-
-const invisible01 = new Invisible(
-    position=game.at(12,3)
 )

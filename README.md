@@ -26,8 +26,7 @@ UTN - Facultad Regional Buenos Aires - Materia Paradigmas de Programación
 
 ## Capturas
 
-*[Screenshots serán agregados una vez implementado el juego]*
-
+![screenshot_area01_level01](assets/images/screenshot.png)
 ## Reglas de Juego / Instrucciones
 
 ### Instrucciones del juego
@@ -68,6 +67,4 @@ Tu misión es infiltrarte en instalaciones militares como **Snake**, evitando la
 
 Leer documentación del proyecto [Aquí](docs/project.md)
 
-
-
-
+Diagrama estático actualizado (17/10/25) [Aquí](docs/uml/actual.png)

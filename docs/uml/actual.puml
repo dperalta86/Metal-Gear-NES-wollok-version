@@ -1,0 +1,141 @@
+@startuml
+title Metal Gear NES - UML (Versión con Character)
+
+' ===== CLASES BASE =====
+abstract class GameObject {
+  + position
+  + image() : String
+  + update()
+  + esColisionable() : Boolean
+  + moveTo(newPos)
+}
+
+abstract class Character extends GameObject {
+  + lastPosition
+  + lastMovement
+  + canBeCollided : Boolean
+  + collidedForGuard(guard)
+  + collidedForSnake()
+}
+
+abstract class Guard extends Character {
+  + direction
+  + state
+  + detectionRange
+  + move()
+  + verifyDetection()
+  + updateState()
+  + update()
+}
+
+class PatrollGuard extends Guard {
+  + getMovement()
+}
+
+class StaticGuard extends Guard { }
+
+object solidSnake{
+  + lastPosition
+  + lastMovement
+  + collidedForGuard(guard)
+  + moveTo(newPos)
+}
+
+class Invisible extends GameObject {
+  + collidedForGuard(guard)
+  + esColisionable() : Boolean
+}
+
+' ===== ÁREAS Y EVENTOS =====
+class Area {
+  + name
+  + guards[*]
+  + changeEvents[*]
+  + background
+  + invisibleObjects[*]
+  + load()
+  + removeArea()
+  + checkAreaChange(character)
+  + addInvisibleObjects()
+}
+
+class ChangeAreaEvent {
+  + currentArea
+  + position
+  + nextDirection
+  + goToArea
+  + nextAreaPosition
+  + canCharacterChangeArea(character)
+}
+
+object areaManager {
+  + actualArea
+  + update(character)
+  + changeArea(character, event)
+}
+
+' ===== SISTEMAS =====
+object colissionHandler {
+  + initialize()
+  + registerCollisionFor(area)
+  + verifyColission(pos)
+  + loadArea(area)
+  + destroyArea(area)
+}
+
+object movement {
+  + moveUp(character)
+  + moveDown(character)
+  + moveLeft(character)
+  + moveRight(character)
+  + canMove(pos)
+  + launchGuardsBehavior()
+  + updateGuardsBehavior()
+}
+
+object keyboardManager {
+  + initKeyboard()
+}
+
+object config {
+  + load()
+}
+
+object levels {
+  + start()
+  + loadLevel1()
+  + clearGame()
+}
+
+class Visual {
+  + image
+  + position
+}
+
+object programMetalGearNES {
+  entryPoint
+}
+
+' ===== RELACIONES =====
+Character <|-- Guard
+Guard <|-- PatrollGuard
+Guard <|-- StaticGuard
+GameObject <|-- Character
+GameObject <|-- Invisible
+Character <|-- solidSnake
+
+Area "1" *-- "*" ChangeAreaEvent
+Area "1" *-- "*" Guard
+Area "1" *-- "*" Invisible
+areaManager --> Area
+areaManager --> ChangeAreaEvent
+colissionHandler --> Area
+colissionHandler --> Guard
+colissionHandler --> Character
+movement --> Character
+keyboardManager --> movement
+keyboardManager --> solidSnake
+config --> MetalGearNES
+levels --> Area
+levels --> solidSnake
+@enduml

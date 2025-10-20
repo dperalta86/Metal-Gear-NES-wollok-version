@@ -10,6 +10,7 @@ object solidSnake{
   var property currentItem = null
 
   method esColisionable() = false
+  method esItem() = false
 
   method image() {
         if (currentItem != null) {
@@ -30,9 +31,9 @@ object solidSnake{
 
  method moveTo(newPos) {
         
-        if (currentItem != null) {
-            self.dejarItem()
-        }
+        // if (currentItem != null) {
+        //     self.dejarItem()
+        // }
 
         if (movement.canMove(newPos) && !colissionHandler.verifyColission(newPos)) {
             lastPosition = position

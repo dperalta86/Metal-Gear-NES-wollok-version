@@ -29,5 +29,8 @@ object keyboardManager {
 
         // Iniciar nivel 1 desde pantalla inicial
         keyboard.space().onPressDo({ levels.loadLevel1() }) // TODO: Verificar que estemos en pantalla inicial
+        keyboard.f().onPressDo( {
+        solidSnake.accionUsarItem()
+    })
     }
 }

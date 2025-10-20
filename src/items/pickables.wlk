@@ -1,6 +1,12 @@
 import src.gameObject.GameObject
 class Box inherits GameObject {
-    override method image() = "box.png"
+    override method image() = "cardboardBox.png"
+
+    override method usar(character) {
+        character.equiparItem(self)
+        game.removeVisual(self)
+    }
+
 }
 
 class RedKey inherits GameObject {

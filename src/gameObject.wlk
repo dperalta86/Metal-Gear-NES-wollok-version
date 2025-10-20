@@ -44,4 +44,6 @@ class GameObject {
 
     // Hook: actualización por frame o tick
     method update() { }
+
+    method usar(character) {  }
 }

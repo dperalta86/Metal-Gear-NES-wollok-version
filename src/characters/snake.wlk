@@ -8,8 +8,16 @@ import src.levels.areaManager.areaManager
  * Solid Snake - Personaje principal controlado por el jugador
  * Hereda de Character pero tiene comportamiento único
  */
-class Snake inherits Character {    
-    override method image() = "snake_" + lastMovement + ".png"
+class Snake inherits Character {
+    var currentItem = null
+    method esItem() = false
+    override   method image() {
+        if (currentItem != null) {
+            return currentItem.image()
+        } else {
+            return "snake_" + self.lastMovement() + ".png"
+        }
+    }
     
     /*
      * Hook: Se ejecuta después de cambiar de posición
@@ -41,6 +49,29 @@ class Snake inherits Character {
     }
     
     // TODO: Métodos adicionales específicos de Snake (usar objetos, agacharse, etc.)
+        method accionUsarItem() {
+        if (currentItem != null) {
+            self.dejarItem()
+        } else {
+           colissionHandler.processInteraction(self)
+        }
+    }
+
+    method equiparItem(item) {
+        currentItem = item
+    }
+
+
+    method dejarItem() {
+
+        if (currentItem != null) {
+            currentItem.position(self.position())
+            game.addVisual(currentItem)
+        }
+        
+        currentItem = null 
+    }
+
 }
 
 const solidSnake = new Snake(

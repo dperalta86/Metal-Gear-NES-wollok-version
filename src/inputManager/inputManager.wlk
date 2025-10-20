@@ -34,5 +34,9 @@ object keyboardManager {
         keyboard.space().onPressDo({ 
             if(game.hasVisual(start)) { levelsManager.loadLevel1() } 
         })
+        
+        keyboard.f().onPressDo( {
+        solidSnake.accionUsarItem()
+    })
     }
 }

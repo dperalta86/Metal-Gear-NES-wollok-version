@@ -24,5 +24,14 @@ object colissionHandler {
     method clear() {
         registered.clear()
     }
+
+        method processInteraction(character) {
+        const itemEnElPiso = game.getObjectsIn(character.position())
+                                .find({ obj => obj.isPickable() })
+        if (itemEnElPiso != null) {
+            console.println("encontre el item")
+            itemEnElPiso.usar(character)
+        }
+    }
 }
 

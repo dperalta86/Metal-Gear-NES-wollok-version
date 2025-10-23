@@ -38,7 +38,7 @@ class Area {
     method guards() { return guards } 
     method removeArea() { 
         colissionHandler.destroyArea(self)
-        levels.clearGame()
+        levelsManager.clearGame()
     }
 
     method addChangeEvent(event) {

@@ -1,6 +1,5 @@
 import src.system.colissions.colissionHandler
 import src.inputManager.movements.movement
-import wollok.game.* // Es necesario importar wollok.game.* cuando defino una clase?
 
 /*
  * Clase abstracta Guard, de ella heredan las clases de los distintos tipos de guardias

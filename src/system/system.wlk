@@ -27,7 +27,7 @@ object config {
     movement.launchGuardsBehavior()
 
     // Inicializo levels
-    levels.loadIntro()
+    levelsManager.loadIntro()
     // Música en loop
     /*
      * Chiptune One.wav by CarlosCarty -- https://freesound.org/s/427513/ -- License: Attribution 4.0
@@ -38,7 +38,7 @@ object config {
   }
 }
 
-object levels {
+object levelsManager {
 
   /*
    * Carga video inicial y espera input para iniciar nivel 1

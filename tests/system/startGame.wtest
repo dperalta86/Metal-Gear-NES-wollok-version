@@ -19,7 +19,7 @@ import src.inputManager.inputManager.keyboardManager
     }
 
     test "Start agrega visuales de inicio correctamente" {
-        levels.loadIntro()
+        levelsManager.loadIntro()
         const visuals = game.allVisuals()
 
         assert.that(visuals.contains(start))
@@ -27,7 +27,7 @@ import src.inputManager.inputManager.keyboardManager
     }
 
     test "loadLevel1 limpia el tablero y coloca Snake correctamente" {
-        levels.loadLevel1()
+        levelsManager.loadLevel1()
 
         assert.equals(game.at(13,1), solidSnake.position())
     }

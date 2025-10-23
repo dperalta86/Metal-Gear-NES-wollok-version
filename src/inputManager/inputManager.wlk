@@ -1,5 +1,5 @@
 import src.inputManager.movements.*
-import src.system.system.levels
+import src.system.system.*
 import src.characters.snake.solidSnake
 import wollok.game.*
 
@@ -28,6 +28,6 @@ object keyboardManager {
     })
 
         // Iniciar nivel 1 desde pantalla inicial
-        keyboard.space().onPressDo({ levels.loadLevel1() }) // TODO: Verificar que estemos en pantalla inicial
+        keyboard.space().onPressDo({ levelsManager.loadLevel1() }) // TODO: Verificar que estemos en pantalla inicial
     }
 }

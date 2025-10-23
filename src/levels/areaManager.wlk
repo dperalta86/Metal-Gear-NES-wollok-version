@@ -1,21 +1,20 @@
+import src.system.gameStatus.gameCurrentStatus
 import src.levels.level01.*
 
 
 object areaManager {
-    var actualArea = area01
-
     method update(character) {
-        const event = actualArea.checkAreaChange(character)
-        if (event != null) {
-            self.changeArea(character, event)
+        const change = gameCurrentStatus.actualArea().checkAreaChange(character)
+        if (change != null) {
+            self.changeArea(character, change)
         }
     }
 
-    method changeArea(character, event) {
-        actualArea.removeArea()
-        actualArea = event.goToArea()
-        actualArea.load()
-        character.position(event.nextAreaPosition())
+    method changeArea(character, change) {
+        gameCurrentStatus.actualArea().removeArea()
+        gameCurrentStatus.modifyArea(change.goToArea())
+        gameCurrentStatus.actualArea().load()
+        character.position(change.nextAreaPosition())
         //console.println(character.position()) // para debug
     }
     
@@ -36,7 +35,6 @@ object areaManager {
  * Manejador de areas y transiciones entre ellas
  */
 class AreaChange {
-    const property currentArea // Area actual 
     const property position // posición de cambio entre areas
     const property nextDirection // "up", "down", "left", "right"
     const property goToArea // Area a la que se quiere ir
@@ -61,7 +59,6 @@ class AreaChange {
  // Ver si es necesario hacer mas descriptivo el nombre del objeto (ej: changeToArea02FromArea01Up)
  // Eventos de cambio de area 01
  const goToArea02 = new AreaChange(
-    currentArea = area01,
     position = game.at(12, 11),
     nextDirection = "up",
     goToArea = area02,
@@ -69,7 +66,6 @@ class AreaChange {
 )
 
 const goToArea03A = new AreaChange(
-    currentArea = area01,
     position = game.at(0, 5),
     nextDirection = "left",
     goToArea = area03,
@@ -77,7 +73,6 @@ const goToArea03A = new AreaChange(
 )
 
 const goToArea03B = new AreaChange(
-    currentArea = area01,
     position = game.at(0, 9),
     nextDirection = "left",
     goToArea = area03,
@@ -86,7 +81,6 @@ const goToArea03B = new AreaChange(
 
 // Eventos de cambio de area 02
  const goToArea01 = new AreaChange(
-    currentArea = area02,
     position = game.at(12, 1),
     nextDirection = "down",
     goToArea = area01,
@@ -95,7 +89,6 @@ const goToArea03B = new AreaChange(
 
 // Eventos de cambio de area 03
 const goToArea01A = new AreaChange(
-    currentArea = area03,
     position = game.at(19, 5),
     nextDirection = "right",
     goToArea = area01,
@@ -103,7 +96,6 @@ const goToArea01A = new AreaChange(
 )
 
 const goToArea01B = new AreaChange(
-    currentArea = area03,
     position = game.at(19, 9),
     nextDirection = "right",
     goToArea = area01,

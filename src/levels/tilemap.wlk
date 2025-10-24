@@ -4,7 +4,6 @@
 */
 object tileTypes {
     const property empty = "."          // Espacio vacío
-    const property snake = "S"          // Snake (jugador)
     const property staticGuard = "G"    // Guardia estático
     const property patrolGuard = "P"    // Guardia patrulla
     const property door = "D"           // Puerta (changeEvent XD)

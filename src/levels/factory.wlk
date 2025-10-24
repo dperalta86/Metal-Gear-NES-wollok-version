@@ -5,7 +5,7 @@ object areaFactory {
     const match_tile = new Dictionary()
 
     method initializeMatchTile() {
-        match_tile.put(tileTypes.empty(), { pos => self.empty(pos) })
+        match_tile.put(tileTypes.empty(), { pos => console.println("Empty space at " + pos) })
         match_tile.put(tileTypes.staticGuard(), { pos => self.createStaticGuard(pos) })
         match_tile.put(tileTypes.patrolGuard(), { pos => self.createPatrolGuard(pos) })
         match_tile.put(tileTypes.door(), { pos => self.createDoor(pos) })
@@ -82,9 +82,4 @@ object areaFactory {
     method createInvisibleCollision(pos){
         console.println("create Invisible Collision!\nPosition: " + pos)
     } 
-
-    method empty(pos) {
-        console.println("Empty space at " + pos)
-    }
-        
 }

@@ -9,12 +9,8 @@ class Visual {
 	var property position = game.origin()
     var canBeCollided = false
 
-    method collidedForGuard(guard) {
-      // Los fondos no reaccionan a colisiones
-    }
-
-        method canBeCollided(valor) {
-        canBeCollided = false
+    method collidedBy(other) {
+        // Los fondos visuales no hacen nada al ser colisionados
     }
 }
 

@@ -1,3 +1,4 @@
+import src.objectPool.objectPool
 import src.levels.factory.*
 import src.system.colissions.colissionHandler
 import src.inputManager.inputManager.keyboardManager
@@ -7,59 +8,76 @@ import src.characters.snake.*
 import src.system.visual.*
 import src.levels.areaManager.*
 
+/*
+ * Configuración principal del juego
+ * Inicializa todos los sistemas en el orden correcto
+ */
 object config {
-  method load()
-  {
-    // Configuraciones globales del juego
-    game.title("Metal Gear NES")
-    game.cellSize(64)
-    game.height(12)
-    game.width(20)
-    game.boardGround("black.png")
-
-    // Inicializo el manejador de inputs
-    keyboardManager.initKeyboard()
-
-    // Iniciliazo el manejador de colisiones
-    colissionHandler.initialize()
-
-    // Inicializo movimientos de los guardias
-    areaManager.launchGuardsBehavior()
-
-    // Inicializo matriz para factory
-    areaFactory.initializeMatchTile()
-
-    // Inicializo levels
-    levelsManager.loadIntro()
-    // Música en loop
-    /*
-     * Chiptune One.wav by CarlosCarty -- https://freesound.org/s/427513/ -- License: Attribution 4.0
-    */
-    const mainSound = game.sound("427513__carloscarty__chiptune-one.wav")
-    mainSound.shouldLoop(true)
-    game.schedule(1000, { mainSound.play()} )
-  }
+    method load() {
+        console.println("╔════════════════════════════════════════╗")
+        console.println("║       METAL GEAR NES - INICIANDO       ║")
+        console.println("╚════════════════════════════════════════╝")
+        
+        // 1. Configuraciones globales del juego
+        game.title("Metal Gear NES")
+        game.cellSize(64)
+        game.height(12)
+        game.width(20)
+        game.boardGround("black.png")
+        
+        // 2. CRÍTICO: Pre-instanciar TODOS los objetos del nivel
+        //    Esto toma 1-2 segundos PERO solo se hace UNA vez
+        console.println("\n[1/6] Pre-creando objetos del nivel...")
+        objectPool.initializeLevel01()
+        
+        // 3. Inicializar sistemas
+        console.println("\n[2/6] Inicializando sistema de colisiones...")
+        colissionHandler.initializeAll(objectPool.getAllObjects())
+        
+        console.println("[3/6] Inicializando controles de teclado...")
+        keyboardManager.initKeyboard()
+        
+        console.println("[4/6] Inicializando comportamiento de guardias...")
+        areaManager.launchGuardsBehavior()
+        
+        // 4. Cargar intro
+        console.println("[5/6] Cargando pantalla de inicio...")
+        levelsManager.loadIntro()
+        
+        // 5. Música
+        console.println("[6/6] Iniciando música...")
+        const mainSound = game.sound("427513__carloscarty__chiptune-one.wav")
+        mainSound.shouldLoop(true)
+        game.schedule(1000, { mainSound.play() })
+        
+        console.println("\n╔════════════════════════════════════════╗")
+        console.println("║             ¡JUEGO LISTO!              ║")
+        console.println("╚════════════════════════════════════════╝\n")
+        
+        // Debug: Mostrar estadísticas
+        objectPool.printStats()
+    }
 }
-
+/*
+ * Manejador de niveles
+ */
 object levelsManager {
-
-  /*
-   * Carga video inicial y espera input para iniciar nivel 1
-  */
-  method loadIntro() {
-    self.clearGame()
-    game.addVisual(start)
-    game.addVisual(startMessage)
-
-  }
-
-  method loadLevel1() {
-    self.clearGame()
-    solidSnake.position(game.at(13,1))
-    area01.load()
-  }
-
-  method clearGame() {
-		game.allVisuals().forEach({ visual => game.removeVisual(visual) })
-	}
+    method loadIntro() {
+        self.clearGame()
+        game.addVisual(start)
+        game.addVisual(startMessage)
+    }
+    
+    method loadLevel1() {
+        self.clearGame()
+        solidSnake.initialize()
+        solidSnake.position(game.at(13, 1))
+        area01.load()
+    }
+    
+    method clearGame() {
+        game.allVisuals().forEach { visual => 
+            game.removeVisual(visual) 
+        }
+    }
 }

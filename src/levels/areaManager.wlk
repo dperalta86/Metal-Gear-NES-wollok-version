@@ -3,30 +3,51 @@ import src.levels.level01.*
 
 
 object areaManager {
+    
     method update(character) {
         const change = gameCurrentStatus.actualArea().checkAreaChange(character)
         if (change != null) {
             self.changeArea(character, change)
         }
     }
-
+    
     method changeArea(character, change) {
-        gameCurrentStatus.actualArea().removeArea()
+        console.println("═══════════════════════════════════")
+        console.println("    CAMBIO DE ÁREA")
+        console.println("═══════════════════════════════════")
+        const startTime = new Date()
+        
+        // 1. Descargar área actual
+        gameCurrentStatus.actualArea().unload()
+        
+        // 2. Actualizar área actual
         gameCurrentStatus.modifyArea(change.goToArea())
+        
+        // 3. Cargar nueva área
         gameCurrentStatus.actualArea().load()
+        
+        // 4. Posicionar personaje
         character.position(change.nextAreaPosition())
-        //console.println(character.position()) // para debug
+        
+        const endTime = new Date()
+        console.println("═══════════════════════════════════")
+        console.println("Cambio completado en " + (endTime - startTime) + "ms")
+        console.println("═══════════════════════════════════\n")
     }
     
-    method launchGuardsBehavior(){
+    method launchGuardsBehavior() {
         game.onTick(500, "guardsBehavior", { self.updateGuardsBehavior() })
     }
-
+    
+    /*
+     * OPTIMIZACIÓN: Solo actualiza guardias del área actual
+     */
     method updateGuardsBehavior() {
-        allRegisteredAreas.forEach { area =>
-            area.guards().forEach { guard =>
-                guard.update()
-            }
+        const currentArea = gameCurrentStatus.actualArea()
+        const activeGuards = currentArea.getActiveGuards()
+        
+        activeGuards.forEach { guard =>
+            guard.update()
         }
     }
 }

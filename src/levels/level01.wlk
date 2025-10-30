@@ -1,104 +1,99 @@
-import src.levels.factory.*
-import src.system.colissions.*
-import src.gameObject.GameObject
-import src.characters.guards.patrollGuard.*
-import src.characters.guards.staticsGuard.*
-import src.obstacles.invisibleObject.*
-import src.levels.tilemap.*
-
-
-import src.characters.snake.*
-import src.system.system.*
-import wollok.game.*
-import src.system.visual.*
+import src.system.colissions.colissionHandler
+import src.characters.snake.solidSnake
+import src.objectPool.objectPool
 import src.levels.areaManager.*
+import src.system.visual.*
 
-// Defino las areas del nivel
-// Ver si conviene hacer una clase abstracta Area y que las areas hereden de ella
+
 class Area {
-    const property tileMatrix // Matriz de tiles del area
-    const property changeEvents = [] // Lista de eventos de cambio de area
-    var property name = ""
-    const background // Imagen de fondo del area 
-
-    // Lista de guardias pertenecientes a esta área
-    var guardList = []
-
-    method guards() = guardList
-
-    // Permite agregar un guardia al área
-    method addGuard(guard) {
-        if (guard != null) {
-            guardList.add(guard)
-        }
-    }
-
-    // Limpia todos los guardias del área
-    method clearGuards() {
-        guardList.clear()
-    }
-
+    const property name        // "area01", "area02", etc.
+    const property background  // Visual de fondo
+    const property changeEvents = []
+    
+    /*
+     * Carga el área activando objetos pre-creados
+     * RÁPIDO: ~50-100ms vs 10 segundos antes
+     */
     method load() { 
-        // Cargo el fondo del area
+        console.println("\n>>> Cargando " + name + "...")
+        const startTime = new Date()
+        
+        // 1. Cargar fondo
         game.addVisual(background)
-
-        // Cargo el tileMap del area
-        areaFactory.createFromMatrix(tileMatrix)
-
-        // Cargo a solidSnake
+        
+        // 2. Activar objetos del pool
+        objectPool.activateArea(name)
+        
+        // 3. Agregar a Snake
         game.addVisual(solidSnake)
-
+        
+        const endTime = new Date()
+        console.println(">>> " + name + " cargada en " + (endTime - startTime) + "ms\n")
     }
-
-    method removeArea() { 
+    
+    /*
+     * Descarga el área desactivando objetos
+     */
+    method unload() { 
+        console.println("\n<<< Descargando " + name + "...")
+        
+        // 1. Limpiar colisiones
         colissionHandler.unregisterAll()
-        levelsManager.clearGame()
+        
+        // 2. Desactivar objetos del pool
+        objectPool.deactivateArea(name)
+        
+        // 3. Limpiar visuales
+        game.allVisuals().forEach { visual => 
+            game.removeVisual(visual) 
+        }
+        
+        console.println("<<< " + name + " descargada\n")
     }
-
+    
     method addChangeEvent(event) {
         changeEvents.add(event)
     }
-
+    
     method checkAreaChange(character) {
-        return changeEvents.findOrDefault({e => e.canCharacterChangeArea(character)}, null)
+        return changeEvents.findOrDefault(
+            { e => e.canCharacterChangeArea(character) }, 
+            null
+        )
+    }
+    
+    method getActiveGuards() {
+        return objectPool.getActiveGuardsForArea(name)
     }
 }
 
-// Instancias de areas del nivel 1
+// ===== Instancias de áreas =====
 const area01 = new Area(
+    name = "area01",
     background = area01BG,
-    name = "Area 01",
-    changeEvents = [goToArea02, goToArea03A, goToArea03B],
-    tileMatrix = tileMapArea01
+    changeEvents = [goToArea02, goToArea03A, goToArea03B]
 )
 
 const area02 = new Area(
+    name = "area02",
     background = area02BG,
-    name = "Area 02",
-    changeEvents = [goToArea01],
-    tileMatrix = tileMapArea02
+    changeEvents = [goToArea01]
 )
 
 const area03 = new Area(
+    name = "area03",
     background = area03BG,
-    name = "Area 03",
-    changeEvents = [goToArea01A, goToArea01B],
-    tileMatrix = tileMapArea03
+    changeEvents = [goToArea01A, goToArea01B]
 )
 
 const area04 = new Area(
+    name = "area04",
     background = area04BG,
-    name = "Area 04",
-    changeEvents = [],
-    tileMatrix = tileMapArea04
-    
+    changeEvents = []
 )
 
 const area05 = new Area(
+    name = "area05",
     background = area05BG,
-    name = "Area 05",
-    changeEvents = [], 
-    tileMatrix = tileMapArea05
+    changeEvents = []
 )
-
-const allRegisteredAreas = [area01, area02, area03, area04, area05]

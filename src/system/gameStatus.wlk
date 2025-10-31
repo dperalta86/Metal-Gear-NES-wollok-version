@@ -13,7 +13,7 @@ object gameCurrentStatus {
     
     // Estado del área
     var currentArea = area01
-    var currentTileMap = tileMapArea01  // ← NUEVO: Referencia a matriz actual
+    var currentTileMap = tileMapArea01 
     
     /*
      * Getters
@@ -45,7 +45,6 @@ object gameCurrentStatus {
     
     /*
      * Verifica si una posición está bloqueada en la matriz actual
-     * O(1) - Ultra rápido!
      */
     method isBlocked(pos) {
         const x = pos.x()

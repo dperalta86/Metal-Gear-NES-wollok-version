@@ -58,7 +58,6 @@ object levelsManager {
     
     method loadLevel1() {
         self.clearGame()
-        solidSnake.initialize()
         solidSnake.position(game.at(13, 1))
         area01.load()
     }

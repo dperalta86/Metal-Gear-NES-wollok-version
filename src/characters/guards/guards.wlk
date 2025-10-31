@@ -9,6 +9,12 @@ class Guard inherits Character {
 
     method collidedForSnake() { console.println(self.toString() + " colisionado por Snake!")}
 
+    override method update() {
+        if (isAlive && isActive) {
+            self.move()
+        }
+    }
+    
     // Comportamiento polimórfico (Interfaz) 
     method verifyDetection() // Lógica para detectar al jugador    
     method updateState() // Lógica para actualizar el estado    

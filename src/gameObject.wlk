@@ -14,6 +14,7 @@ class GameObject {
     method position(pos) {
         position = pos
     }
+    method position() = position
 
     method isActive() = isActive
     
@@ -22,25 +23,16 @@ class GameObject {
         canBeCollided = valor
     }
     
-    // Activa el objeto (lo hace visible y colisionable)
-    method activate() {
-    if (!game.hasVisual(self)) {
-        console.println("obj")
-    }
+method activate() {
     canBeCollided = true
     isActive = true
 }
-
     
-    // Desactiva el objeto (lo oculta)
-    method deactivate() {
-        canBeCollided = false
-        isActive = false
-        if (game.hasVisual(self)){
-            game.removeVisual(self)
-        }
-      
-    }
+method deactivate() {
+    canBeCollided = false
+    isActive = false
+}
+
     
     // Método para manejar colisiones - polimórfico
     method collidedBy(character) {

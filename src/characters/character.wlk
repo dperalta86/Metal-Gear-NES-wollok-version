@@ -76,54 +76,12 @@ class Character inherits GameObject {
      * - PatrollGuard: Movimiento aleatorio/patrón
      */
     method move()
-    
-    /*
-     * Template method: Define el flujo de actualización
-     * Solo se actualiza si está vivo y activo
-     */
-    override method update() {
-        if (isAlive && isActive) {
-            self.move()
-        }
-    }
+
     
     /*
      * Manejo de colisiones - Polimórfico
      */
     override method collidedBy(other) {
         console.println(self.className() + " colisionó con " + other.className())
-    }
-    
-    /*
-     * Métodos de utilidad para dirección
-     * Esto es lo que hablamos con Santi sobre la repetición en lastMovement y lastPosition etc...
-     */
-    method isLookingAt(otherPosition) {
-        return self.getPositionInFront() == otherPosition
-    }
-    
-    method getPositionInFront() {
-        return self.getPositionInDirection(direction)
-    }
-    
-    method getPositionInDirection(dir) {
-        return if (dir == "up") {
-            position.up(1)
-        } else if (dir == "down") {
-            position.down(1)
-        } else if (dir == "left") {
-            position.left(1)
-        } else if (dir == "right") {
-            position.right(1)
-        } else {
-            position
-        }
-    }
-    
-    /*
-     * Distancia a otro personaje (útil para detección)
-     */
-    method distanceTo(otherCharacter) {
-        return position.distance(otherCharacter.position())
     }
 }

@@ -26,19 +26,19 @@ object objectPool {
             const areaName = allAreasLevel01.get(i).name()
             console.println("Cargando objetos de " + areaName + "...")
             const objs = areaFactory.createObjectsFromMatrix(tileMatrix)
-            objs.forEach { obj => obj.canBeCollided(false) } // Para garantizar que no se inicien colosionables
             objectsByArea.put(areaName, objs)
             i = i + 1
         }
 
         console.println("✓ Pool inicializado. Total áreas: " + objectsByArea.keys().size())
+
     }
 
     method activateArea(areaName) {
         const areaObjects = objectsByArea.get(areaName)
-        areaObjects.forEach { obj =>
-            obj.activate() // Delego la responsabilidad de activar al objeto
-        }
+        areaObjects.forEach ({ obj => obj.activate() })
+        areaObjects.forEach ({ obj => game.addVisual(obj) })      
+        
         console.println("Área " + areaName + " activada (" + areaObjects.size() + " objetos)")
     }
 
@@ -46,6 +46,7 @@ object objectPool {
         const areaObjects = objectsByArea.get(areaName)
         areaObjects.forEach { obj =>
             obj.deactivate()
+            game.removeVisual(obj)
         }
         console.println("Área " + areaName + " desactivada")
     }

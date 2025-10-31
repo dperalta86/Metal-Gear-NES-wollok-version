@@ -5,32 +5,41 @@ import wollok.game.*
  * Define la interfaz común que todos los objetos deben implementar
  */
 class GameObject {
-    var property position
-    var property isActive = false // Indica si el objeto está actualmente en el área
+    var position
+    var isActive = false // Indica si el objeto está actualmente en el área
     var canBeCollided = false 
     
     method image() // Abstract - implementar en subclases
+
+    method position(pos) {
+        position = pos
+    }
+
+    method isActive() = isActive
     
-    method esColisionable() = canBeCollided
-    
+    method canBeCollided() = canBeCollided    
     method canBeCollided(valor) {
         canBeCollided = valor
     }
     
     // Activa el objeto (lo hace visible y colisionable)
     method activate() {
-        if (!isActive) {
-            game.addVisual(self)
-            isActive = true
-        }
+    if (!game.hasVisual(self)) {
+        console.println("obj")
     }
+    canBeCollided = true
+    isActive = true
+}
+
     
-    // Desactiva el objeto (lo oculta y quita colisión)
+    // Desactiva el objeto (lo oculta)
     method deactivate() {
-        if (isActive) {
+        canBeCollided = false
+        isActive = false
+        if (game.hasVisual(self)){
             game.removeVisual(self)
-            isActive = false
         }
+      
     }
     
     // Método para manejar colisiones - polimórfico

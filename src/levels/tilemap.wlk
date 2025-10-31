@@ -108,3 +108,11 @@ const tileMapArea05 = [
     [".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".",".","."],
     ["C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C","C"]
 ]
+
+const allTileMapsLevel01 = [
+    tileMapArea01,
+    tileMapArea02,
+    tileMapArea03,
+    tileMapArea04,
+    tileMapArea05
+]

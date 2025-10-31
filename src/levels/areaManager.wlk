@@ -1,3 +1,4 @@
+import src.objectPool.*
 import src.system.gameStatus.gameCurrentStatus
 import src.levels.level01.*
 
@@ -43,8 +44,7 @@ object areaManager {
      * OPTIMIZACIÓN: Solo actualiza guardias del área actual
      */
     method updateGuardsBehavior() {
-        const currentArea = gameCurrentStatus.actualArea()
-        const activeGuards = currentArea.getActiveGuards()
+        const activeGuards = objectPool.getActiveGuardsInCurrentArea()
         
         activeGuards.forEach { guard =>
             guard.update()

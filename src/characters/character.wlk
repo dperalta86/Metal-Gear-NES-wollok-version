@@ -17,9 +17,6 @@ class Character inherits GameObject {
     var property isAlive = true
     var property movementSpeed = 1 // Tiles por movimiento
     
-    // Los personajes son colisionables por defecto
-    override method esColisionable() = true
-    
     /*
      * Método común para mover personajes con validación de colisiones
      * Valida límites del tablero y colisiones antes de mover
@@ -33,11 +30,10 @@ class Character inherits GameObject {
     }
     
     /*
-     * Verifica si el personaje puede moverse a una posición
+     * Verifica si el personaje puede moverse a una posición valida
      */
     method canMoveTo(newPos) {
-        return movement.canMove(newPos) && 
-               !colissionHandler.hasColissionAt(newPos)
+        return movement.canMove(newPos)
     }
     
     /*

@@ -18,37 +18,34 @@ object config {
         console.println("║       METAL GEAR NES - INICIANDO       ║")
         console.println("╚════════════════════════════════════════╝")
         
-        game.title("Metal Gear NES")
-        game.cellSize(64)
-        game.height(12)
-        game.width(20)
-        game.boardGround("black.png")
+    // Configuraciones globales del juego
+    game.title("Metal Gear NES")
+    game.cellSize(64)
+    game.height(12)
+    game.width(20)
+    game.boardGround("black.png")
 
-        console.println("[1/7] Inicializando Object Pool")
-        objectPool.initializeLevel01()
+    // Inicializo el manejador de inputs
+    keyboardManager.initKeyboard()
 
-        console.println("[2/7] Activando área inicial")
-        objectPool.activateArea("area01")
+    // Crear todos los objetos del nivel una sola vez
+    objectPool.initializeLevel01()
 
-        console.println("[3/7] Inicializando CollisionHandler")
-        colissionHandler.initialize()
+    // Inicializo movimientos de los guardias
+    areaManager.launchGuardsBehavior()
 
-        console.println("[4/7] Cargando colisiones de otras áreas en background")
-        game.schedule(2000, { objectPool.loadOtherAreasCollisionsAsync("area01") })
-
-        console.println("[5/7] Inicializando controles de teclado")
-        keyboardManager.initKeyboard()
-
-        console.println("[6/7] Inicializando guardias")
-        areaManager.launchGuardsBehavior()
-
-        console.println("[7/7] Cargando intro")
-        levelsManager.loadIntro()
-
-
-        console.println("¡Juego listo!")
-    }
+    // Inicializo levels
+    levelsManager.loadIntro()
+    // Música en loop
+    /*
+     * Chiptune One.wav by CarlosCarty -- https://freesound.org/s/427513/ -- License: Attribution 4.0
+    */
+    const mainSound = game.sound("427513__carloscarty__chiptune-one.wav")
+    mainSound.shouldLoop(true)
+    game.schedule(1000, { mainSound.play()} )
+  }
 }
+
 /*
  * Manejador de niveles
  */

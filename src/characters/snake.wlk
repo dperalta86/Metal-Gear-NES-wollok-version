@@ -12,12 +12,6 @@ class Snake inherits Character {
     override method image() = "snake_" + lastMovement + ".png"
     
     /*
-     * Snake no es colisionable para otros objetos
-     * (los enemigos no "chocan" contra él, lo detectan visualmente)
-     */
-    override method esColisionable() = false
-    
-    /*
      * Snake no se mueve automáticamente
      * El movimiento es controlado por el teclado (inputManager)
      */

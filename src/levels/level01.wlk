@@ -16,34 +16,27 @@ class Area {
      */
     method load() { 
         console.println("\n>>> Cargando " + name + "...")
-        const startTime = new Date()
         
         // 1. Cargar fondo
         game.addVisual(background)
         
-        // 2. Activar objetos del pool
+        // 2. Activar objetos del pool (guardias, cajas, llaves, etc.)
         objectPool.activateArea(name)
         
         // 3. Agregar a Snake
         game.addVisual(solidSnake)
-        
-        const endTime = new Date()
-        console.println(">>> " + name + " cargada en " + (endTime - startTime) + "ms\n")
     }
     
     /*
      * Descarga el área desactivando objetos
      */
     method unload() { 
-        console.println("\n<<< Descargando " + name + "...")
+        console.println("\n<<< Descargando " + name + "...") 
         
-        // 1. Limpiar colisiones
-        colissionHandler.unregisterAll()
-        
-        // 2. Desactivar objetos del pool
+        // 1. Desactivar objetos del pool
         objectPool.deactivateArea(name)
         
-        // 3. Limpiar visuales
+        // 2. Limpiar visuales TODO: Optimizar para no eliminar todo cada vez (solo los del area)
         game.allVisuals().forEach { visual => 
             game.removeVisual(visual) 
         }
@@ -60,10 +53,6 @@ class Area {
             { e => e.canCharacterChangeArea(character) }, 
             null
         )
-    }
-    
-    method getActiveGuards() {
-        return objectPool.getActiveGuardsForArea(name)
     }
 }
 
@@ -97,3 +86,11 @@ const area05 = new Area(
     background = area05BG,
     changeEvents = []
 )
+
+const allAreasLevel01 = [
+    area01,
+    area02,
+    area03,
+    area04,
+    area05
+]

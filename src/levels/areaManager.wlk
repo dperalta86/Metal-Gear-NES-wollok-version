@@ -2,7 +2,9 @@ import src.objectPool.*
 import src.system.gameStatus.gameCurrentStatus
 import src.levels.level01.*
 
-
+/*
+* Maneja los cambios entre áreas y la actualización de comportamientos de guardias
+*/
 object areaManager {
     
     method update(character) {
@@ -36,14 +38,14 @@ object areaManager {
         console.println("═══════════════════════════════════\n")
     }
     
+    /*
+     * Control periódico de comportamiento de guardias activos
+     */
     method launchGuardsBehavior() {
-        game.onTick(500, "guardsBehavior", { self.updateGuardsBehavior() })
+        game.onTick(500, "guardsBehavior", { self.updateActiveGuards() })
     }
     
-    /*
-     * OPTIMIZACIÓN: Solo actualiza guardias del área actual
-     */
-    method updateGuardsBehavior() {
+    method updateActiveGuards() {
         const activeGuards = objectPool.getActiveGuardsInCurrentArea()
         
         activeGuards.forEach { guard =>

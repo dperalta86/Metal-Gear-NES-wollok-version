@@ -12,31 +12,6 @@ class Snake inherits Character {
     override method image() = "snake_" + lastMovement + ".png"
     
     /*
-     * Snake no se mueve automáticamente
-     * El movimiento es controlado por el teclado (inputManager)
-     */
-    override method move() {
-        // Movimiento controlado externamente por teclado
-        // Este método existe para cumplir con la interfaz de Character
-    }
-    
-    /*
-     * Método específico para movimiento por input del teclado
-     * Llamado desde inputManager cuando el jugador presiona teclas
-     */
-    method moveToByInput(newPos, newDirection) {
-        if (self.canMoveTo(newPos)) {
-            lastPosition = position
-            position = newPos
-            lastMovement = newDirection
-            direction = newDirection
-            
-            // Hook: Verificar cambio de área después de moverse
-            self.onPositionChanged()
-        }
-    }
-    
-    /*
      * Hook: Se ejecuta después de cambiar de posición
      */
     override method onPositionChanged() {
@@ -49,22 +24,14 @@ class Snake inherits Character {
      * Colisión con otros objetos
      */
     override method collidedBy(other) {
-        console.println("Snake colisionó con: " + other.className())
-        
-        // Si choca con algo colisionable (guardia, muro), retrocede no lo "pisa"
-        if (other.esColisionable()) {
+        console.println("Snake collided with: " + other.className())
+        if (other.isActive() && other.canBeCollided()) {
             position = lastPosition
         }
+        // TODO: si el objeto es un guardia, Snake pierde vida o muere (detección)
+
     }
-    
-    /*
-     * Sistema de daño
-     */
-/*     override method takeDamage(amount) {
-        super(amount)
-        // TODO: Efectos visuales de daño
-        // TODO: Sonido de daño
-    } */
+
     
     override method die() {
         super()

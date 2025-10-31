@@ -4,42 +4,39 @@ import wollok.game.*
  * Clase abstracta base para todos los objetos del juego
  * Define la interfaz común que todos los objetos deben implementar
  */
+/*
+ * Clase base abstracta para todos los objetos del juego.
+ * Define comportamiento y estado común (posición, activación, colisión).
+ */
 class GameObject {
     var position
-    var isActive = false // Indica si el objeto está actualmente en el área
+    var isActive = false
     var canBeCollided = false 
     
-    method image() // Abstract - implementar en subclases
+    method image() // Abstract - debe implementarse en subclases
 
-    method position(pos) {
-        position = pos
-    }
+    method position(pos) { position = pos }
     method position() = position
 
     method isActive() = isActive
-    
     method canBeCollided() = canBeCollided    
-    method canBeCollided(valor) {
-        canBeCollided = valor
-    }
-    
-method activate() {
-    canBeCollided = true
-    isActive = true
-}
-    
-method deactivate() {
-    canBeCollided = false
-    isActive = false
-}
+    method canBeCollided(valor) { canBeCollided = valor }
 
-    
-    // Método para manejar colisiones - polimórfico
-    method collidedBy(character) {
-        // Por defecto no hace nada, las subclases sobrecargan (override) según necesiten
+    // Activa lógicamente el objeto
+    method activate() {
+        canBeCollided = true
+        isActive = true
     }
     
-    method update() {
-        // Idem anterior
+    // Desactiva lógicamente el objeto
+    method deactivate() {
+        canBeCollided = false
+        isActive = false
     }
+
+    // Hook: define qué ocurre si otro objeto colisiona con este
+    method collidedBy(character) { }
+
+    // Hook: actualización por frame o tick
+    method update() { }
 }

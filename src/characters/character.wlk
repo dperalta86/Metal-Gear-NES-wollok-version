@@ -36,7 +36,7 @@ class Character inherits GameObject {
     method onPositionChanged() {
         // Por defecto no hace nada
         // Snake lo usa para verificar cambio de área
-        // Guards lo usan para actualizar patrullaje
+        // Guards lo usan para actualizar patrullaje ¿?
     }
     
     /*
@@ -61,14 +61,6 @@ class Character inherits GameObject {
         self.deactivate()
         console.println(self.className() + " ha muerto") // Si es Snake, game over se maneja en otro lado
     }
-    
-    /*
-     * Método abstracto: Cada personaje implementa su propia lógica de movimiento
-     * - Snake: Movimiento controlado por teclado
-     * - StaticGuard: No se mueve (o solo rota)
-     * - PatrollGuard: Movimiento aleatorio/patrón
-     */
-    method move()
 
     
     /*

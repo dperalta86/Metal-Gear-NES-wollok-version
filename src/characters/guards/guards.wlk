@@ -7,7 +7,12 @@ import src.inputManager.movements.movement
  */
 class Guard inherits Character {
 
-    method collidedForSnake() { console.println(self.toString() + " colisionado por Snake!")}
+    // Queda "genérico", ver si directamente lo personalizamos a snake...
+    override method collidedBy(other) {
+        if (other.className() == "Snake") {
+            other.takeDamage(50)
+        }
+    }
 
     override method update() {
         if (isAlive && isActive) {
@@ -16,6 +21,7 @@ class Guard inherits Character {
     }
     
     // Comportamiento polimórfico (Interfaz) 
+    method move()
     method verifyDetection() // Lógica para detectar al jugador    
     method updateState() // Lógica para actualizar el estado    
 }

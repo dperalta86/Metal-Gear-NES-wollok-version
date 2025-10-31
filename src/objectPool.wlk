@@ -36,8 +36,10 @@ object objectPool {
 
     method activateArea(areaName) {
         const areaObjects = objectsByArea.get(areaName)
-        areaObjects.forEach ({ obj => obj.activate() })
-        areaObjects.forEach ({ obj => game.addVisual(obj) })      
+        areaObjects.forEach ({ obj => 
+            obj.activate()
+            game.addVisual(obj) 
+        })
         
         console.println("Área " + areaName + " activada (" + areaObjects.size() + " objetos)")
     }

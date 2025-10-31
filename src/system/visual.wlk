@@ -3,14 +3,13 @@ import wollok.game.*
 /*
  * Definición base para todos los fondos visuales
  * (idea: https://github.com/wollok/bobEsponjaGame  )
+ * No tienen interacción, solo son imágenes de fondo
 */
 class Visual {
 	var property image
 	var property position = game.origin()
 
-    method collidedBy(other) {
-        // Los fondos visuales no hacen nada al ser colisionados
-    }
+    method collidedBy(other) {  }
 }
 
 // Inicio

@@ -2,9 +2,9 @@ import src.levels.level01.*
 import src.levels.tilemap.*
 
 /*
- * GameCurrentStatus - Estado Global del Juego
- * Ahora también maneja la matriz de colisiones actual
- * VENTAJA: Single Source of Truth - una sola referencia al área y su matriz
+ * GameCurrentStatus: mantiene el estado global del juego.
+ * Contiene el área actual, matriz de colisión y nivel actual.
+ * Sirve como "Single Source of Truth" para todo el sistema.
  */
 object gameCurrentStatus {
     const levels = ["level 01", "level 02", "final level"]

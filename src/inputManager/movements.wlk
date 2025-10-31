@@ -1,3 +1,4 @@
+import src.system.gameStatus.gameCurrentStatus
 import src.characters.snake.solidSnake
 import wollok.game.*
 import src.system.colissions.colissionHandler
@@ -31,6 +32,7 @@ object movement {
 
     method canMove(pos) {
         return pos.x() >= 0 && pos.x() < game.width() && 
-        pos.y() >= 0 && pos.y() < game.height()
+        pos.y() >= 0 && pos.y() < game.height() &&
+        !gameCurrentStatus.isBlocked(pos)
   }
 }

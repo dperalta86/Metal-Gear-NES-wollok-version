@@ -48,13 +48,9 @@ object gameCurrentStatus {
      */
     method isBlocked(pos) {
         const x = pos.x()
-        const y = pos.y()
-        
-        // Verificar límites
-        if (y < 0 || y >= currentTileMap.size()) return true
+        const y = pos.y()        
         
         const row = currentTileMap.get(y)
-        if (x < 0 || x >= row.size()) return true
         
         // Obtener el tile y verificar si es colisión
         const tile = row.get(x)

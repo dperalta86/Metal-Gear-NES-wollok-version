@@ -30,7 +30,7 @@ object colissionHandler {
                                 .find({ obj => obj.isPickable() })
         if (itemEnElPiso != null) {
             console.println("encontre el item")
-            itemEnElPiso.usar(character)
+            itemEnElPiso.use(character)
         }
     }
 }

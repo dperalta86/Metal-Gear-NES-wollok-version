@@ -2,8 +2,8 @@ import src.gameObject.GameObject
 class Box inherits GameObject {
     override method image() = "cardboardBox.png"
 
-    override method usar(character) {
-        character.equiparItem(self)
+    override method use(character) {
+        character.pickUpItem(self)
         game.removeVisual(self)
     }
 

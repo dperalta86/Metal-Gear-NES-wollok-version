@@ -36,7 +36,7 @@ object keyboardManager {
         })
         
         keyboard.f().onPressDo( {
-        solidSnake.accionUsarItem()
+        solidSnake.equipItem()
     })
     }
 }

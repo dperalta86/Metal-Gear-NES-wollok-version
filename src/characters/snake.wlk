@@ -10,7 +10,6 @@ import src.levels.areaManager.areaManager
  */
 class Snake inherits Character {
     var currentItem = null
-    method esItem() = false
     override   method image() {
         if (currentItem != null) {
             return currentItem.image()
@@ -49,20 +48,20 @@ class Snake inherits Character {
     }
     
     // TODO: Métodos adicionales específicos de Snake (usar objetos, agacharse, etc.)
-        method accionUsarItem() {
+        method equipItem() {
         if (currentItem != null) {
-            self.dejarItem()
+            self.giveUpItem()
         } else {
            colissionHandler.processInteraction(self)
         }
     }
 
-    method equiparItem(item) {
+    method pickUpItem(item) {
         currentItem = item
     }
 
 
-    method dejarItem() {
+    method giveUpItem() {
 
         if (currentItem != null) {
             currentItem.position(self.position())

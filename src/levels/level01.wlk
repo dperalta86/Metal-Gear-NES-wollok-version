@@ -76,13 +76,13 @@ const area02 = new Area(
 const area03 = new Area(
     name = "area03",
     background = area03BG,
-    changeEvents = [goToArea01A, goToArea01B]
+    changeEvents = [goToArea01A, goToArea01B, goToArea04A, goToArea04B]
 )
 
 const area04 = new Area(
     name = "area04",
     background = area04BG,
-    changeEvents = []
+    changeEvents = [goToArea03]
 )
 
 const area05 = new Area(

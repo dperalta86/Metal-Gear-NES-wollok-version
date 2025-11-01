@@ -115,12 +115,34 @@ const goToArea01A = new AreaChange(
     position = game.at(19, 5),
     nextDirection = "right",
     goToArea = area01,
-    nextAreaPosition = game.at(1, 5)
+    nextAreaPosition = game.at(0, 5)
 )
 
 const goToArea01B = new AreaChange(
     position = game.at(19, 9),
     nextDirection = "right",
     goToArea = area01,
-    nextAreaPosition = game.at(1, 9)
+    nextAreaPosition = game.at(0, 9)
+)
+
+const goToArea04A = new AreaChange(
+    position = game.at(4, 11),
+    nextDirection = "up",
+    goToArea = area04,
+    nextAreaPosition = game.at(4, 1)
+)
+
+// Borrar ¿?
+const goToArea04B = new AreaChange(
+    position = game.at(8, 11),
+    nextDirection = "up",
+    goToArea = area04,
+    nextAreaPosition = game.at(8, 1)
+)
+// Eventos de cambio de area 04
+const goToArea03 = new AreaChange(
+    position = game.at(8, 1),
+    nextDirection = "down",
+    goToArea = area03,
+    nextAreaPosition = game.at(8, 11)
 )

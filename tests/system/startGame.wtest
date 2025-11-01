@@ -5,7 +5,7 @@
  */
 import wollok.game.*
 import src.system.system.*
-import src.system.visual.*
+import src.ui.visual.*
 import src.characters.snake.*
 import src.inputManager.inputManager.keyboardManager
 

@@ -1,8 +1,13 @@
+import src.system.objectPool.*
+import src.system.gameStatus.*
+import src.system.colissions.*
+import src.ui.hud.hud
 import src.system.system.config
 import src.levels.areaManager.*
+import src.levels.level01.*
 import src.system.system.levelsManager
-import src.system.visual.*
 import src.characters.snake.*
+import src.ui.visual.*
 
 
 object gameManager {
@@ -17,6 +22,7 @@ object gameManager {
     method startGame() {
         isPaused = false
         isGameOver = false
+
         if (!game.running()){
             console.println("🎮 Game started")
             game.start()
@@ -59,8 +65,17 @@ object gameManager {
     method restartGame() {
         console.println("🔄 Restarting game...")
         isGameOver = false
+
+        // Limpiar estado previo
+        colissionHandler.clear()
+        objectPool.deactivateArea(gameCurrentStatus.actualArea().name())
+        objectPool.reset() // Resetea todos los objetos del pool
+
+        // Reiniciar estado del juego
         solidSnake.position(game.at(13, 1))
         solidSnake.heal(100)
+        gameCurrentStatus.modifyArea(area01)
+        hud.initHUD()
         levelsManager.loadIntro()
     }
 }

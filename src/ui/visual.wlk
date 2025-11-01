@@ -12,6 +12,15 @@ class Visual {
     method collidedBy(other) {  }
 }
 
+object heart {
+    method create(pos) {
+        return new Visual(
+            image = "heart_hud.png",
+            position = pos
+            )
+    }
+}
+
 // Inicio
 const start = new Visual(
 	image = "intro.gif",

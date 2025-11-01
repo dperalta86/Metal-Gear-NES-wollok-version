@@ -4,7 +4,7 @@ import src.inputManager.movements.*
 import src.system.system.*
 import src.characters.snake.solidSnake
 import wollok.game.*
-import src.system.visual.*
+import src.ui.visual.*
 
 
 /*

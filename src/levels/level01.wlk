@@ -1,8 +1,9 @@
+import src.ui.hud.hud
 import src.system.objectPool.objectPool
 import src.system.colissions.colissionHandler
 import src.characters.snake.solidSnake
 import src.levels.areaManager.*
-import src.system.visual.*
+import src.ui.visual.*
 
 
 class Area {
@@ -25,6 +26,9 @@ class Area {
         
         // 3. Agregar a Snake
         game.addVisual(solidSnake)
+
+        // 4. Agregar HUD
+        hud.drawHearts()
     }
     
     /*

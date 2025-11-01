@@ -55,6 +55,16 @@ object objectPool {
         console.println("Área " + areaName + " desactivada")
     }
 
+    method reset() {
+        objectsByArea.values().forEach { areaList =>
+        areaList.forEach { obj =>
+            if (game.hasVisual(obj))
+                game.removeVisual(obj)
+        }
+    }
+}
+
+
     method getObjectsForArea(areaName) = objectsByArea.get(areaName)
     
     method getActiveGuardsInCurrentArea() {

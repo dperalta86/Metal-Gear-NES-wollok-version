@@ -1,3 +1,4 @@
+import src.ui.hud.hud
 import src.system.objectPool.objectPool
 import src.levels.factory.*
 import src.system.colissions.colissionHandler
@@ -5,7 +6,7 @@ import src.inputManager.inputManager.keyboardManager
 import src.levels.level01.*
 import wollok.game.*
 import src.characters.snake.*
-import src.system.visual.*
+import src.ui.visual.*
 import src.levels.areaManager.*
 
 /*
@@ -30,6 +31,9 @@ object config {
 
     // Crear todos los objetos del nivel una sola vez
     objectPool.initializeLevel01()
+
+    // Inicializo el HUD
+    hud.initHUD()
 
     // Inicializo movimientos de los guardias
     areaManager.launchGuardsBehavior()

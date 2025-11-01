@@ -1,3 +1,4 @@
+import src.ui.hud.hud
 import src.gameManager.gameManager
 import src.characters.character.Character
 import src.inputManager.movements.*
@@ -42,6 +43,10 @@ class Snake inherits Character {
 
     }
 
+    override method takeDamage(amount) {
+        super(amount)
+        hud.lostHeart()
+    }
     
     override method die() {
         super()

@@ -12,7 +12,11 @@ import src.levels.areaManager.areaManager
  */
 class Snake inherits Character {
     var currentItem = null
-    var equipment = []
+    var equipment = [] // -> Si llegamos, agregamos que pueda cambiar entre items
+    
+    method currentItem() = currentItem
+    
+    // TODO: directamente puede devolver "sknake_" + currentItem.className() + self.lastMovement() + ".png"
     override   method image() {
         if (currentItem != null) {
             return currentItem.image()
@@ -39,42 +43,62 @@ class Snake inherits Character {
             self.takeDamage(20)
             position = lastPosition
         }
-        // TODO: si el objeto es un guardia, Snake pierde vida o muere (detección)
-
     }
 
     override method takeDamage(amount) {
-        super(amount)
+        var finalDamage = amount
+        if (currentItem.className() == "Box") {
+            finalDamage = amount / 2
+            currentItem.reduceDurability()
+            if (currentItem.durability() <= 0) {
+                console.println("La caja se rompió.")
+                currentItem = null
+            }
+        }
+
+        super(finalDamage)
         hud.lostHeart()
     }
-    
     override method die() {
         super()
         gameManager.gameOver()
     }
     
     // TODO: Métodos adicionales específicos de Snake (usar objetos, agacharse, etc.)
-        method equipItem() {
-        if (currentItem != null) {
-            self.giveUpItem()
-        } else {
-           colissionHandler.processInteraction(self)
-        }
+    /*
+    * Recoge un ítem en la posición actual (si hay alguno)
+    */
+    method pickItem() {
+        colissionHandler.processPickItem(self)
     }
 
-    method pickUpItem(item) {
+
+    /*
+    * Suelta el ítem actual (si tiene alguno)
+    */
+    method dropItem() {
+        colissionHandler.processDropItem(self)
+    }
+
+     method pickUpItem(item) {
+        equipment.add(item)
         currentItem = item
     }
 
-
     method giveUpItem() {
-
         if (currentItem != null) {
-            currentItem.position(self.position())
-            game.addVisual(currentItem)
+            currentItem.drop(self)
         }
-        
-        currentItem = null 
+        currentItem = null
+    }
+
+    method useItem() {
+        if (currentItem != null) {
+            console.println("Snake usa: " + currentItem.className())
+            currentItem.beUse(self)
+        } else {
+            console.println("No tiene ningún objeto para usar.")
+        }
     }
 
 }

@@ -37,13 +37,11 @@ object keyboardManager {
             if(gameManager.isGameOver()) { gameManager.restartGame() }  
         })
         
-        keyboard.f().onPressDo( {
-            solidSnake.equipItem()
-        })
+        keyboard.a().onPressDo({ solidSnake.pickItem() })   // recoger
+        keyboard.s().onPressDo({ solidSnake.dropItem() })   // soltar
+        keyboard.d().onPressDo({ solidSnake.useItem() })    // usar
 
-        keyboard.p().onPressDo( {
-            gameManager.togglePause()
-        })
+        keyboard.p().onPressDo({ gameManager.togglePause() })  // pausar/reanudar juego})
 
         // TODO: implementar función de salir del juego
         keyboard.q().onPressDo( {  })

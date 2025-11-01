@@ -25,12 +25,36 @@ object colissionHandler {
         registered.clear()
     }
 
-        method processInteraction(character) {
-        const item = game.getObjectsIn(character.position())
-                                .find({ obj => obj.isPickable() })
+    /*
+    * Devuelve el primer objeto pickable en la posición actual del personaje
+    */
+    method getPickableAt(character) {
+        return game.getObjectsIn(character.position())
+                .find({ obj => obj.isPickable() })
+    }
+
+    /*
+    * Intenta que el personaje recoja un objeto en su posición
+    */
+    method processPickItem(character) {
+        const item = self.getPickableAt(character)
         if (item != null) {
-            console.println("encontre el item")
-            item.use(character)
+            console.println("Snake recoge: " + item.className())
+            item.equip(character)
+        } else {
+            console.println("No hay nada que recoger aquí.")
+        }
+    }
+
+    /*
+    * Intenta que el personaje suelte su objeto actual
+    */
+    method processDropItem(character) {
+        if (character.currentItem() != null) {
+            console.println("Snake suelta el objeto.")
+            character.giveUpItem()
+        } else {
+            console.println("No tiene ningún objeto equipado.")
         }
     }
 }

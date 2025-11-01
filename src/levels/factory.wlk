@@ -11,9 +11,9 @@ object areaFactory {
         match_tile.put(tileTypes.staticGuard(), { pos => new StaticGuard(position = pos, isCollidable = true) })
         match_tile.put(tileTypes.patrolGuard(), { pos => new PatrollGuard(position = pos, isCollidable = true) })
         match_tile.put(tileTypes.door(), { pos => null }) // Las puertas se manejan aparte
-        match_tile.put(tileTypes.box(), { pos => new Box(position = pos, isPickable = true) })
-        match_tile.put(tileTypes.redKey(), { pos => new RedKey(position = pos) })
-        match_tile.put(tileTypes.blueKey(), { pos => new BlueKey(position = pos) })
+        match_tile.put(tileTypes.box(), { pos => new Box(position = pos) })
+        match_tile.put(tileTypes.redKey(), { pos => new Key(position = pos, type = "red") })
+        match_tile.put(tileTypes.blueKey(), { pos => new Key(position = pos, type = "blue") })
         match_tile.put(tileTypes.weapon(), { pos => new Weapon(position = pos) })
         match_tile.put(tileTypes.health(), { pos => new Health(position = pos) })
         match_tile.put(tileTypes.collision(), { pos => null })

@@ -40,10 +40,8 @@ class GameObject {
     }
 
     // Hook: define qué ocurre si otro objeto colisiona con este
-    method collidedBy(character) { }
+    method collidedBy(character) {}
 
     // Hook: actualización por frame o tick
-    method update() { }
-
-    method use(character) {  }
+    method update() {}
 }

@@ -1,14 +1,7 @@
 import src.inputManager.movements.*
-
 import src.characters.guards.guards.Guard
 
 class PatrollGuard inherits Guard {
-    override method image() {
-        if(isAlive){
-            return "patroll_guard.png"
-        }
-        return "dead_guard.png"
-    }
     
     override method move() {
         const nextMove = self.getMovement()

@@ -1,17 +1,9 @@
 import src.inputManager.movements.*
-import wollok.game.* 
-
 import src.characters.guards.guards.Guard
 
 
 class StaticGuard inherits Guard {
     var moveCount=0
-        override method image() {
-        if(isAlive){
-            return "static_guard.png"
-        }
-        return "dead_guard.png"
-    }
     // Comportamiento polimórfico (Interfaz)
     override method move(){
         moveCount +=1

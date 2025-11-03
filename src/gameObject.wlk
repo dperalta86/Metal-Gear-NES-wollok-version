@@ -1,3 +1,4 @@
+import src.utils.log.*
 import wollok.game.*
 
 /*
@@ -39,6 +40,10 @@ class GameObject {
         isActive = false
     }
 
+    // collidedBy()
+    method collidedBy(character) {
+        log.debug(self, "colisionado por " + character)
+    }
     // Hook: actualización por frame o tick
     method update() {}
 }

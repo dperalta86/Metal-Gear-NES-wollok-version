@@ -71,12 +71,14 @@ object levelsManager {
         self.clearGame()
         game.addVisual(start)
         game.addVisual(startMessage)
+        log.debug(self, "Intro caragada")
     }
     
     method loadLevel1() {
         self.clearGame()
         solidSnake.position(game.at(13, 1))
         area01.load()
+        log.debug(self, "Level 01 cargado")
     }
     
     method clearGame() {

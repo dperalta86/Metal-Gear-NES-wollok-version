@@ -1,3 +1,5 @@
+import src.utils.log.log
+import src.utils.utils.utils
 import src.ui.hud.hud
 import src.gameManager.gameManager
 import src.characters.character.Character
@@ -41,11 +43,10 @@ class Snake inherits Character {
 
     override method takeDamage(amount) {
         var finalDamage = amount
-        if (currentItem.className() == "Box") {
+        if (utils.getClassName(currentItem) == "Box") {
             finalDamage = amount / 2
             currentItem.reduceDurability()
             if (currentItem.durability() <= 0) {
-                console.println("La caja se rompió.")
                 currentItem = null
             }
         }
@@ -88,13 +89,12 @@ class Snake inherits Character {
 
     method useItem() {
         if (currentItem != null) {
-            console.println("Snake usa: " + currentItem.className())
+            log.info(self, "Snake usa: " + utils.getClassName(currentItem))
             currentItem.beUse(self)
         } else {
-            console.println("No tiene ningún objeto para usar.")
+            log.info(self, "No tiene ningún objeto para usar.")
         }
     }
-
 }
 
 const solidSnake = new Snake(

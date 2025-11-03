@@ -1,3 +1,4 @@
+import src.utils.log.log
 import src.characters.guards.staticsGuard.*
 import src.characters.guards.patrollGuard.*
 import src.items.pickables.*
@@ -17,6 +18,7 @@ object areaFactory {
         match_tile.put(tileTypes.weapon(), { pos => new Weapon(position = pos) })
         match_tile.put(tileTypes.health(), { pos => new Health(position = pos) })
         match_tile.put(tileTypes.collision(), { pos => null })
+        log.debug(self, "MatchTile cargado")
     }
 
     method createObjectsFromMatrix(tileMatrix) {

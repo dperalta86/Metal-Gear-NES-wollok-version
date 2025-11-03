@@ -15,7 +15,7 @@ class Bullet inherits GameObject{
             active = true            
             canBeCollided = true
             colissionHandler.register(self)
-            game.schedule(1000, { self.stop() })
+            game.schedule(750, { self.stop() })
             if(isVisible){
                 game.addVisual(self)
             }
@@ -29,7 +29,7 @@ class Bullet inherits GameObject{
         active = false
     }
 
-    method collidedBy(character){
+    override method collidedBy(character){
         character.takeDamage(50)
     }
 }
@@ -55,12 +55,10 @@ object bulletManager{
         if (direction == "left"){
             position = game.at(pos.x()-2, pos.y()) // desplazo porque el visual "viene" de izq a derecha
         }
-        bullets.forEach({ bullet =>
-            console.println("[bulletManager] pos: " + position + " direccion: " + direction)        
+        bullets.forEach({ bullet =>       
             bullet.fire(position, direction, isVisible)
             position = matchDirection.basicGet(direction).apply(position)
             isVisible = false
-            console.println("disparo")
         })
         
     }

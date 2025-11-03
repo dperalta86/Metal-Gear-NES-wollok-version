@@ -1,3 +1,5 @@
+import src.utils.utils.utils
+import src.utils.log.log
 import src.system.gameStatus.*
 import src.levels.factory.areaFactory
 import src.system.colissions.colissionHandler
@@ -18,20 +20,17 @@ object objectPool {
     const objectsByArea = new Dictionary()
 
     method initializeLevel01() {
-        console.println("=== Inicializando Object Pool ===")
         areaFactory.initializeMatchTile()
 
         var i = 0
         allTileMapsLevel01.forEach { tileMatrix =>
             const areaName = allAreasLevel01.get(i).name()
-            console.println("Cargando objetos de " + areaName + "...")
+            log.debug(self, "Cargando objetos de " + areaName + "...")
             const objs = areaFactory.createObjectsFromMatrix(tileMatrix)
             objectsByArea.put(areaName, objs)
             i = i + 1
         }
-
-        console.println("✓ Pool inicializado. Total áreas: " + objectsByArea.keys().size())
-
+        log.info(self, "✓ Pool inicializado. Total áreas: " + objectsByArea.keys().size())
     }
 
     method activateArea(areaName) {
@@ -42,7 +41,7 @@ object objectPool {
             game.addVisual(obj) 
         })    
         
-        console.println("Área " + areaName + " activada (" + areaObjects.size() + " objetos)")
+        log.debug(self, "Área " + areaName + " activada (" + areaObjects.size() + " objetos)")
     }
 
     method deactivateArea(areaName) {
@@ -52,7 +51,8 @@ object objectPool {
             colissionHandler.unregister(obj)
             game.removeVisual(obj)
         }
-        console.println("Área " + areaName + " desactivada")
+
+        log.debug(self, "Área " + areaName + " desactivada")
     }
 
     method reset() {
@@ -72,7 +72,7 @@ object objectPool {
     if (areaObjects == null) return []
 
     return areaObjects.filter({ obj =>
-        obj.isActive() && (obj.className().contains("PatrollGuard") || obj.className().contains("StaticGuard"))
+        obj.isActive() && (utils.getClassName(obj) == "PatrollGuard" || utils.getClassName(obj) == "StaticGuard")
     })
 }
 

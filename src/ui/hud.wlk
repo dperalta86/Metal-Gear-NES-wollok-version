@@ -1,3 +1,4 @@
+import src.utils.log.*
 import src.ui.visual.heart
 import wollok.game.*
 
@@ -12,6 +13,7 @@ object hud {
         fullHearts.add(heart.create(game.at(5, 0)))
         fullHearts.add(heart.create(game.at(6, 0)))
         currentHearts = fullHearts.take(5)
+        log.debug(self, "Inicializado correctamente")
     }
 
     method drawHearts(){
@@ -27,15 +29,4 @@ object hud {
         self.drawHearts()
     }
 }
-
-/*     method updateHealth(health) {
-        currentHearts = Math.ceil(health / 20)
-        var i = 0
-        hearts.forEach { h =>
-            h.full = i < currentHearts
-            i = i + 1
-        }
-    } */
-
-
 

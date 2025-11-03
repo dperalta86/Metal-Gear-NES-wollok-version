@@ -1,3 +1,5 @@
+import src.utils.utils.utils
+import src.utils.log.log
 
 import wollok.game.*
 import src.gameObject.GameObject
@@ -46,7 +48,7 @@ class Character inherits GameObject {
      */
     method takeDamage(amount) {
         health = (health - amount).max(0)
-        console.println(self.className() + " recibió " + amount + " de daño. Vida: " + health)
+        log.debug(self, utils.getClassName(self) + " recibió " + amount + " de daño. Vida: " + health)
         
         if (health <= 0) {
             self.die()
@@ -55,13 +57,13 @@ class Character inherits GameObject {
     
     method heal(amount) {
         health = (health + amount).min(100)
-        console.println(self.className() + " recuperó " + amount + " de vida. Vida: " + health)
+        log.debug(self, utils.getClassName(self) + " recuperó " + amount + " de vida. Vida: " + health)
     }
     
     method die() {
         isAlive = false
         self.deactivate()
-        console.println(self.className() + " ha muerto") // Si es Snake, game over se maneja en otro lado
+        log.debug(self, utils.getClassName(self) + " ha muerto") // Si es Snake, game over se maneja en otro lado
     }
 
     
@@ -71,7 +73,7 @@ class Character inherits GameObject {
     override method collidedBy(other) {
         if (other.isActive() && other.canBeCollided()) {
             self.takeDamage(20)
-            if(!other.className().contains("Bullet")){
+            if(utils.getClassName(other) != "Bullet"){
                 position = lastPosition
             }
 

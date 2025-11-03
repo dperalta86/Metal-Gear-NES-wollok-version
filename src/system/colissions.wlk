@@ -1,3 +1,5 @@
+import src.utils.utils.utils
+import src.utils.log.log
 import src.characters.*
 import src.levels.level01.*
 
@@ -39,10 +41,10 @@ object colissionHandler {
     method processPickItem(character) {
         const item = self.getPickableAt(character)
         if (item != null) {
-            console.println("Snake recoge: " + item.className())
             item.equip(character)
+            log.debug(self, utils.getClassName(character)  + " recoge: " + utils.getClassName(item))
         } else {
-            console.println("No hay nada que recoger aquí.")
+            log.debug(self, "No hay nada que recoger aquí...")
         }
     }
 
@@ -51,10 +53,10 @@ object colissionHandler {
     */
     method processDropItem(character) {
         if (character.currentItem() != null) {
-            console.println("Snake suelta el objeto.")
             character.giveUpItem()
+            log.debug(self, utils.getClassName(character) + " suelta el objeto.")
         } else {
-            console.println("No tiene ningún objeto equipado.")
+            log.debug(self, utils.getClassName(character) + " no tiene ningún item.")
         }
     }
 }

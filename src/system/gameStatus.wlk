@@ -1,3 +1,4 @@
+import src.utils.log.log
 import src.levels.level01.*
 import src.levels.tilemap.*
 
@@ -30,8 +31,7 @@ object gameCurrentStatus {
         
         // Actualizar referencia a la matriz correspondiente
         currentTileMap = self.getTileMapForArea(newArea.name())
-        
-        console.println("  [GameStatus] Matriz actualizada para " + newArea.name())
+        log.debug(self, "Matriz actualizada para " + newArea.name())
     }
     
     // TODO: Mejorar este método para evitar hardcoding, cumple su función por ahora
@@ -86,6 +86,7 @@ object gameCurrentStatus {
     method levelUp() {
         if (idxCurrentLevel >= 0 && idxCurrentLevel < levels.size() - 1) {
             currentLevel = levels.get(idxCurrentLevel + 1)
+            log.info(self, "LevelUp a: " + currentLevel)
         }
     }
 }

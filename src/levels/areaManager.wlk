@@ -14,12 +14,7 @@ object areaManager {
         }
     }
     
-    method changeArea(character, change) {
-        console.println("═══════════════════════════════════")
-        console.println("    CAMBIO DE ÁREA")
-        console.println("═══════════════════════════════════")
-        const startTime = new Date()
-        
+    method changeArea(character, change) {        
         // 1. Descargar área actual
         gameCurrentStatus.actualArea().unload()
         
@@ -31,11 +26,6 @@ object areaManager {
         
         // 4. Posicionar personaje
         character.position(change.nextAreaPosition())
-        
-        const endTime = new Date()
-        console.println("═══════════════════════════════════")
-        console.println("Cambio completado en " + (endTime - startTime) + "ms")
-        console.println("═══════════════════════════════════\n")
     }
     
     /*

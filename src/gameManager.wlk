@@ -1,3 +1,4 @@
+import src.utils.log.log
 import src.system.objectPool.*
 import src.system.gameStatus.*
 import src.system.colissions.*
@@ -39,11 +40,11 @@ object gameManager {
         
         if (!isPaused) {
             isPaused = true
-            console.println("⏸ Game paused")
+            log.info(self, "⏸ Game paused")
             game.addVisual(pauseScreen)
         } else {
             isPaused = false
-            console.println("▶ Resumed")
+            log.info(self, "▶ Resumed")
             game.removeVisual(pauseScreen)
         }
 
@@ -55,7 +56,7 @@ object gameManager {
     // --------------------
     method gameOver() {        
         isGameOver = true
-        console.println("💀 GAME OVER 💀")
+        log.info(self, "💀 GAME OVER 💀")
         game.addVisual(gameOverScreen)
     }
 
@@ -63,7 +64,7 @@ object gameManager {
     // Reiniciar
     // --------------------
     method restartGame() {
-        console.println("🔄 Restarting game...")
+        log.info(self, "🔄 Restarting game...")
         isGameOver = false
 
         // Limpiar estado previo

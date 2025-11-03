@@ -1,3 +1,4 @@
+import src.utils.log.log
 import src.ui.hud.hud
 import src.system.objectPool.objectPool
 import src.system.colissions.colissionHandler
@@ -15,8 +16,8 @@ class Area {
      * Carga el área activando objetos pre-creados
      * RÁPIDO: ~50-100ms vs 10 segundos antes
      */
-    method load() { 
-        console.println("\n>>> Cargando " + name + "...")
+    method load() {
+        log.info(self, "\n>>> Cargando " + name + "...")
         
         // 1. Cargar fondo
         game.addVisual(background)
@@ -34,9 +35,7 @@ class Area {
     /*
      * Descarga el área desactivando objetos
      */
-    method unload() { 
-        console.println("\n<<< Descargando " + name + "...") 
-        
+    method unload() {         
         // 1. Desactivar objetos del pool
         objectPool.deactivateArea(name)
         
@@ -45,7 +44,7 @@ class Area {
             game.removeVisual(visual) 
         }
         
-        console.println("<<< " + name + " descargada\n")
+        log.info(self, "<<< " + name + " descargada\n")
     }
     
     method addChangeEvent(event) {

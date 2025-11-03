@@ -1,3 +1,5 @@
+import src.utils.log.log
+import src.utils.utils.utils
 import src.items.bullet.bulletManager
 import src.gameObject.GameObject
 
@@ -38,20 +40,21 @@ class Box inherits Pickable {
     override method beUse(character) {
         console.println("Snake se esconde en la caja.")
         character.activateBoxMode(self)
+        log.info(self, utils.getClassName(character + " se esconde en la caja"))
     }
 
     method reduceDurability() {
         durability = durability - 1
         if (durability <= 0) {
-            console.println("La caja se destruyó.")
             game.removeVisual(self)
             isActive = false
+            log.info(self, "La caja se destruyó.")
         }
     }
 }
 
 class Key inherits Pickable {
-    const type = "red" // Puede ser "red" o "blue"
+    const type = "red" // Puede ser "red" o "blue", lo define el factory
     override method image() = type + "_key.png"
 }
 
@@ -76,10 +79,10 @@ class Health inherits Pickable {
     override method image() = "health.png"
 
     override method beUse(character) {
-        console.println("Snake se cura.")
         character.heal(50)
         // Se usa y se destruye...
         character.giveUpItem()
         isActive = false
+        log.info(self, utils.getClassName(character) + " usa medicina")
     }
 }

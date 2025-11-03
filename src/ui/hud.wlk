@@ -3,7 +3,7 @@ import src.ui.visual.heart
 import wollok.game.*
 
 object hud {
-    var fullHearts = []
+    const fullHearts = []
     var currentHearts = []
 
     method initHUD() {

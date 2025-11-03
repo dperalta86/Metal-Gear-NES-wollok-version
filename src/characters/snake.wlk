@@ -14,7 +14,7 @@ import src.levels.areaManager.areaManager
  */
 class Snake inherits Character {
     var currentItem = null
-    var equipment = [] // -> Si llegamos, agregamos que pueda cambiar entre items
+    const equipment = [] // -> Si llegamos, agregamos que pueda cambiar entre items
     
     method currentItem() = currentItem
     

@@ -6,7 +6,7 @@ import src.gameObject.GameObject
 class Bullet inherits GameObject{
     var gunDirection = "right"
     var active = false
-    method image() = gunDirection + "_bullets.gif"
+    override method image() = gunDirection + "_bullets.gif"
 
     method fire(pos, direction, isVisible){
         if (!active){
@@ -35,7 +35,7 @@ class Bullet inherits GameObject{
 }
 
 object bulletManager{
-    var matchDirection = new Dictionary()
+    const matchDirection = new Dictionary()
     method init() {
         matchDirection.put("right", { pos => game.at(pos.x()+1, pos.y()) })
         matchDirection.put("left", { pos => game.at(pos.x()-1, pos.y()) })

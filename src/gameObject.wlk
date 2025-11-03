@@ -12,8 +12,8 @@ import wollok.game.*
 class GameObject {
     var position
     var isActive = false
-    var isCollidable = false
-    var isPickable = false
+    const isCollidable = false
+    const isPickable = false
     var canBeCollided = false 
     
     method image() // Abstract - debe implementarse en subclases

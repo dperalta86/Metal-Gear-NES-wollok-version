@@ -74,6 +74,6 @@ const gameOverScreen = new Visual(
 )
 
 const winnerScreen = new Visual(
-    image = "GAME_OVER.png",
-    position = game.at(4,3)
+    image = "metal_gear.gif",
+    position = game.at(5,3)
 )

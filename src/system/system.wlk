@@ -1,3 +1,4 @@
+import src.utils.log.log
 import src.items.bullet.bulletManager
 import src.ui.hud.hud
 import src.system.objectPool.objectPool
@@ -51,6 +52,14 @@ object config {
     const mainSound = game.sound("427513__carloscarty__chiptune-one.wav")
     mainSound.shouldLoop(true)
     game.schedule(1000, { mainSound.play()} )
+
+    // utilidad pseudo log (por ahora solo printea en pantalla)
+    log.info(self, "Configuración inicial completada correctamente.\n" +
+    " ├─ Título: " + game.title() + "\n" +
+    " ├─ Dimensiones: " + game.width() + "x" + game.height() +
+    " ├─ Fondo: black.png\n" +
+    " ├─ Subsistemas activos: keyboardManager, objectPool, hud, areaManager, bulletManager, levelsManager\n" +
+    " └─ Recurso de audio cargado: 427513__carloscarty__chiptune-one.wav (loop habilitado)")
   }
 }
 

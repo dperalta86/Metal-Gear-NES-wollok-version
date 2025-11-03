@@ -6,7 +6,12 @@ import src.characters.guards.guards.Guard
 
 class StaticGuard inherits Guard {
     var moveCount=0
-    override method image() = "static_guard.png"
+        override method image() {
+        if(isAlive){
+            return "static_guard.png"
+        }
+        return "dead_guard.png"
+    }
     // Comportamiento polimórfico (Interfaz)
     override method move(){
         moveCount +=1
@@ -24,6 +29,7 @@ class StaticGuard inherits Guard {
         game.schedule(2000, {movement.moveRight(self)})
         game.schedule(2500, {movement.moveLeft(self)})
         game.schedule(3000, {movement.moveUp(self)})
+        game.schedule(3500, {movement.moveUp(self)})
         moveCount = 0 // Reinicio el contador      
     }
     override method verifyDetection() { } 

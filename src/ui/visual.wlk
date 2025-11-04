@@ -77,3 +77,8 @@ const winnerScreen = new Visual(
     image = "metal_gear.gif",
     position = game.at(5,3)
 )
+
+const dontWinnerScreen = new Visual(
+    image = "dont_win.png",
+    position = game.at(5,3)
+)

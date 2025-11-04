@@ -41,15 +41,13 @@ class Box inherits Pickable {
     override method image() = "cardboardBox.png"
 
     override method beUse(character) {
-        console.println("Snake se esconde en la caja.")
-        character.activateBoxMode(self)
-        log.info(self, utils.getClassName(character + " se esconde en la caja"))
+        log.debug(self, utils.getClassName(character + " se escondió en la caja"))
     }
 
     override method damageDecreases(character, amount){
         self.reduceDurability()
         if (durability <= 0) {
-            character.lostItem(self)
+            character.removeItemFromEquipment(self)
         }
         return amount/2
     }

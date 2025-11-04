@@ -22,7 +22,7 @@ class Snake inherits Character {
     
     // TODO: directamente puede devolver "sknake_" + currentItem.className() + self.lastMovement() + ".png"
     override   method image() {
-        if (currentItem != null) {
+        if (currentItem != null || utils.getClassName(currentItem) == "DoorKey") {
             return currentItem.image()
         } else {
             return "snake_" + self.lastMovement() + ".png"
@@ -91,7 +91,7 @@ class Snake inherits Character {
         if (currentItem != null) {
             currentItem.drop(self)
         }
-        currentItem = null
+        self.removeItemFromEquipment(currentItem)
     }
 
     method useItem() {
@@ -103,10 +103,9 @@ class Snake inherits Character {
         }
     }
 
-    method lostItem(item){
-        if(currentItem == item){
-            currentItem = null
-        }
+    method removeItemFromEquipment(item){
+        // las verificaciones las hace el caller
+        currentItem = null
         if (equipment != [] && equipment.contains(item)){
             equipment.remove(item)
         }

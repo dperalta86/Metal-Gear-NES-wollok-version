@@ -35,10 +35,17 @@ object gameManager {
     // --------------------
     // Winner
     // --------------------
-    method winner(character) {        
-        isGameOver = true
-        log.info(self, "Congratulations! You won this game!")
-        game.addVisual(winnerScreen)
+    method winner(character) {
+        const item = character.currentItem()
+        if (item != null && item.type()=="red"){
+            isGameOver = true
+            log.info(self, "Congratulations! You won this game!")
+            game.addVisual(winnerScreen)
+        }else{
+            game.addVisual(dontWinnerScreen)
+            game.schedule(1500, { game.removeVisual(dontWinnerScreen)})
+        }
+
     }
 
     // --------------------

@@ -17,7 +17,9 @@ object hud {
     method drawHearts(){
         currentHearts.forEach { h =>
             game.addVisual(h)}
-        game.addVisual(snake_hud)
+        if(!game.hasVisual(snake_hud)){
+            game.addVisual(snake_hud)
+        }
     }
 
     method lostHeart(){

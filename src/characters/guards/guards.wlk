@@ -16,7 +16,9 @@ class Guard inherits Character {
 
     // Queda "genérico", ver si directamente lo personalizamos a snake...
     override method collidedBy(other) {
-        other.takeDamage(50)    
+        if(utils.getClassName(other) != "Health"){
+            super(other)
+        } 
     }
 
     override method update() {

@@ -19,6 +19,7 @@ class Snake inherits Character {
     const equipment = [] // -> Si llegamos, agregamos que pueda cambiar entre items
     
     method currentItem() = currentItem
+    method equipment() = equipment
     method currentItemName() {
         if (currentItem == null || utils.getClassName(currentItem) == "DoorKey"){
             return "empty"

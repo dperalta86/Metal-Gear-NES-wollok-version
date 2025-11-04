@@ -1,5 +1,6 @@
 import src.items.winner.*
 import src.utils.log.log
+import src.utils.utils.utils
 import src.system.objectPool.*
 import src.system.gameStatus.*
 import src.system.colissions.*
@@ -37,7 +38,7 @@ object gameManager {
     // Winner
     // --------------------
     method winner(character) {
-        const item = character.currentItem()
+        const item = character.equipment().findOrElse({e => utils.getClassName(e).equalsIgnoreCase("DoorKey")}, {null})
         if (item != null && item.type()=="red"){
             isGameOver = true
             log.info(self, "Congratulations! You won this game!")

@@ -88,12 +88,4 @@ class Weapon inherits Pickable {
 
 class Health inherits Pickable {
     override method image() = "health.png"
-
-    override method beUse(character) {
-        character.heal(50)
-        // Se usa y se destruye...
-        character.giveUpItem()
-        isActive = false
-        log.info(self, utils.getClassName(character) + " usa medicina")
-    }
 }

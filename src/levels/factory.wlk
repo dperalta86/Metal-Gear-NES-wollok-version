@@ -17,7 +17,7 @@ object areaFactory {
         match_tile.put(tileTypes.redKey(), { pos => new DoorKey(position = pos, type = "red") })
         match_tile.put(tileTypes.blueKey(), { pos => new DoorKey(position = pos, type = "blue") })
         match_tile.put(tileTypes.weapon(), { pos => new Weapon(position = pos) })
-        match_tile.put(tileTypes.health(), { pos => new Health(position = pos) })
+        match_tile.put(tileTypes.health(), { pos => new Health(position = pos, isCollidable = true) })
         match_tile.put(tileTypes.collision(), { pos => null })
         match_tile.put(tileTypes.winner(), { pos => new Winner(position = pos) })
         log.debug(self, "MatchTile cargado")

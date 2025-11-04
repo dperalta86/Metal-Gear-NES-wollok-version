@@ -28,5 +28,12 @@ object hud {
         currentHearts = fullHearts.take(actualHearts - 1)
         self.drawHearts()
     }
+
+    method recoverHearts() {
+        currentHearts.forEach({h => game.removeVisual(h)})
+        currentHearts.clear()
+        currentHearts = fullHearts.take(5)
+        self.drawHearts()
+    }
 }
 

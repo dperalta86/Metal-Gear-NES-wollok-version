@@ -76,7 +76,7 @@ class Character inherits GameObject {
     override method collidedBy(other) {
         if (other.isActive() && other.canBeCollided()) {
             self.takeDamage(20)
-            if(utils.getClassName(other) != "Bullet"){
+            if(utils.getClassName(other) != "Bullet" || utils.getClassName(other) !="Health"){
                 position = lastPosition
             }
 

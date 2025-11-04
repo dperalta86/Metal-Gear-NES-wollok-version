@@ -1,3 +1,5 @@
+import src.system.objectPool.*
+import src.items.pickables.*
 import src.utils.log.log
 import src.utils.utils.utils
 import src.ui.hud.hud
@@ -54,6 +56,16 @@ class Snake inherits Character {
         gameManager.gameOver()
     }
     
+    override method collidedBy(other){
+        if (utils.getClassName(other) == "Health"){
+            self.heal(100)
+            hud.recoverHearts()
+            objectPool.deactivateObject(other)
+        }
+        if (utils.getClassName(other) != "Health"){
+            super(other)
+        }
+    }
     // TODO: Métodos adicionales específicos de Snake (usar objetos, agacharse, etc.)
     /*
     * Recoge un ítem en la posición actual (si hay alguno)

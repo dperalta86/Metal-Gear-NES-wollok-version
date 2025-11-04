@@ -46,13 +46,15 @@ object objectPool {
 
     method deactivateArea(areaName) {
         const areaObjects = objectsByArea.get(areaName)
-        areaObjects.forEach { obj =>
-            obj.deactivate()
-            colissionHandler.unregister(obj)
-            game.removeVisual(obj)
-        }
+        areaObjects.forEach { obj => self.deactivateObject(obj)}
 
         log.debug(self, "Área " + areaName + " desactivada")
+    }
+
+    method deactivateObject(obj) {
+        obj.deactivate()
+        colissionHandler.unregister(obj)
+        game.removeVisual(obj)
     }
 
     method reset() {

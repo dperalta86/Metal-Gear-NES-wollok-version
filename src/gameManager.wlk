@@ -1,3 +1,4 @@
+import src.items.winner.*
 import src.utils.log.log
 import src.system.objectPool.*
 import src.system.gameStatus.*
@@ -43,9 +44,10 @@ object gameManager {
             game.addVisual(winnerScreen)
         }else{
             game.addVisual(dontWinnerScreen)
-            game.schedule(1500, { game.removeVisual(dontWinnerScreen)})
+            game.schedule(2000, { 
+                game.removeVisual(dontWinnerScreen)
+            })
         }
-
     }
 
     // --------------------

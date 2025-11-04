@@ -62,7 +62,9 @@ class Snake inherits Character {
             hud.recoverHearts()
             objectPool.deactivateObject(other)
         }
-        if (utils.getClassName(other) != "Health"){
+        if (utils.getClassName(other) == "Winner"){
+            other.equip(self)
+        }else{
             super(other)
         }
     }

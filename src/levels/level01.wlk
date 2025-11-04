@@ -87,7 +87,7 @@ const area04 = new Area(
 const area05 = new Area(
     name = "area05",
     background = area05BG,
-    changeEvents = []
+    changeEvents = [goToArea02B]
 )
 
 const allAreasLevel01 = [

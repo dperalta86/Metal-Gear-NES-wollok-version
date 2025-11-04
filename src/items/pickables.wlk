@@ -64,6 +64,8 @@ class Box inherits Pickable {
 
 class DoorKey inherits Pickable {
     const type = "red" // Puede ser "red" o "blue", lo define el factory
+
+    method type() = type
     override method image() = type + "_key.png"
 }
 

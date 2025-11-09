@@ -20,20 +20,8 @@ class Snake inherits Character {
     
     method currentItem() = currentItem
     method equipment() = equipment
-/*     method currentItemName() {
-        return currentItem.displayName();
-        
-        if (currentItem == null || utils.getClassName(currentItem) == "DoorKey"){
-            return "empty"
-        }else{
-            return utils.getClassName(currentItem)
-        }
-    } */
-   override method image() = "snake_" + currentItem.displayImage() + "_" + self.lastMovement() + ".png"
+    override method image() = "snake_" + currentItem.displayImage() + "_" + self.lastMovement() + ".png"
 
-    /*
-     * Hook: Se ejecuta después de cambiar de posición
-     */
     override method onPositionChanged() {
         // Verificar si Snake debe cambiar de área
         areaManager.update(self)        
@@ -114,6 +102,10 @@ class Snake inherits Character {
             equipment.remove(item)
         }
     }
+
+    method meetsConditionToWin() = equipment.any({ item =>
+        item.checkWin()
+    })
 }
 
 const solidSnake = new Snake(

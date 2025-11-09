@@ -14,8 +14,8 @@ object areaFactory {
         match_tile.put(tileTypes.patrolGuard(), { pos => new PatrollGuard(position = pos, isCollidable = true) })
         match_tile.put(tileTypes.door(), { pos => null }) // Las puertas se manejan aparte
         match_tile.put(tileTypes.box(), { pos => new Box(position = pos) })
-        match_tile.put(tileTypes.redKey(), { pos => new DoorKey(position = pos, type = "red") })
-        match_tile.put(tileTypes.blueKey(), { pos => new DoorKey(position = pos, type = "blue") })
+        match_tile.put(tileTypes.redKey(), { pos => new RedKey(position = pos) })
+        match_tile.put(tileTypes.blueKey(), { pos => new BlueKey(position = pos) })
         match_tile.put(tileTypes.weapon(), { pos => new Weapon(position = pos) })
         match_tile.put(tileTypes.health(), { pos => new Health(position = pos, isCollidable = true) })
         match_tile.put(tileTypes.collision(), { pos => null })
@@ -36,8 +36,8 @@ object areaFactory {
                 const pos = game.at(x, y)
                 const builder = match_tile.basicGet(tile)
                 if (builder != null) {
-                    const newObj = builder.apply(pos)
-                    if (newObj != null) result.add(newObj)
+                    const newObj = builder.apply(pos)                    
+                    if (newObj != null) { result.add(newObj) }
                 }
                 x = x + 1
             }

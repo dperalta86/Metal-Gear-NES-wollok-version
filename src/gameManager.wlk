@@ -1,3 +1,4 @@
+import src.items.pickables.*
 import src.items.winner.*
 import src.utils.log.log
 import src.utils.utils.utils
@@ -11,6 +12,8 @@ import src.levels.level01.*
 import src.system.system.levelsManager
 import src.characters.snake.*
 import src.ui.visual.*
+import src.levels.factory.*
+
 
 
 object gameManager {
@@ -38,8 +41,7 @@ object gameManager {
     // Winner
     // --------------------
     method winner(character) {
-        const item = character.equipment().findOrElse({e => utils.getClassName(e).equalsIgnoreCase("DoorKey")}, {null})
-        if (item != null && item.type()=="red"){
+        if (character.meetsConditionToWin()){
             isGameOver = true
             log.info(self, "Congratulations! You won this game!")
             game.addVisual(winnerScreen)

@@ -1,4 +1,4 @@
-import src.characters.equipment.snakeEquipment
+import src.characters.snake.equipment.snakeEquipment
 import src.system.objectPool.*
 import src.items.pickables.*
 import src.utils.log.log
@@ -15,7 +15,12 @@ import src.levels.areaManager.areaManager
  * Solid Snake - Personaje principal controlado por el jugador
  * Hereda de Character pero tiene comportamiento único
  */
-class Snake inherits Character {
+object solidSnake inherits Character {
+    method initialize(){
+        position = game.origin()
+        lastPosition = game.origin()
+        movementSpeed = 1
+    }
     const equipment = snakeEquipment // -> Si llegamos, agregamos que pueda cambiar entre items
     const currentItem = snakeEquipment.itemInUse()
 
@@ -68,8 +73,8 @@ class Snake inherits Character {
     })
 }
 
-const solidSnake = new Snake(
+/* const solidSnake = new Snake(
     position = game.origin(),
     lastPosition = game.origin(),
     movementSpeed = 1
-)
+) */

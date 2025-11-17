@@ -1,3 +1,4 @@
+import src.system.soundManager.*
 import src.gameManager.*
 import src.system.gameStatus.*
 import src.inputManager.movements.*
@@ -33,7 +34,10 @@ object keyboardManager {
 
         // Iniciar nivel 1 desde pantalla inicial
         keyboard.space().onPressDo({ 
-            if(game.hasVisual(start)) { levelsManager.loadLevel1() } 
+            if(game.hasVisual(start)) { 
+                levelsManager.loadLevel1()
+                soundManager.backgroundSound()
+            } 
             if(gameManager.isGameOver()) { gameManager.restartGame() }  
         })
         

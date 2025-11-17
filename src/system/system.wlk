@@ -10,6 +10,8 @@ import wollok.game.*
 import src.characters.snake.snake.*
 import src.ui.visual.*
 import src.levels.areaManager.*
+import src.system.soundManager.*
+
 
 /*
  * Configuración principal del juego
@@ -45,13 +47,6 @@ object config {
 
     // Inicializo levels
     levelsManager.loadIntro()
-    // Música en loop
-    /*
-     * Chiptune One.wav by CarlosCarty -- https://freesound.org/s/427513/ -- License: Attribution 4.0
-    */
-    const mainSound = game.sound("427513__carloscarty__chiptune-one.wav")
-    mainSound.shouldLoop(true)
-    game.schedule(1000, { mainSound.play()} )
 
     // utilidad pseudo log (por ahora solo printea en pantalla)
     log.info(self, "Configuración inicial completada correctamente.\n" +

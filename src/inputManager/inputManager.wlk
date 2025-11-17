@@ -36,7 +36,7 @@ object keyboardManager {
         keyboard.space().onPressDo({ 
             if(game.hasVisual(start)) { 
                 levelsManager.loadLevel1()
-                soundManager.backgroundSound()
+                soundManager.playBGSound()
             } 
             if(gameCurrentStatus.isGameOver()) { gameManager.restartGame() }  
         })

@@ -7,7 +7,7 @@ import src.system.colissions.colissionHandler
 import src.inputManager.inputManager.keyboardManager
 import src.levels.level01.*
 import wollok.game.*
-import src.characters.snake.*
+import src.characters.snake.snake.*
 import src.ui.visual.*
 import src.levels.areaManager.*
 

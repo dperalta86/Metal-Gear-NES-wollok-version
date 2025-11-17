@@ -2,7 +2,7 @@ import src.gameManager.*
 import src.system.gameStatus.*
 import src.inputManager.movements.*
 import src.system.system.*
-import src.characters.snake.solidSnake
+import src.characters.snake.snake.solidSnake
 import wollok.game.*
 import src.ui.visual.*
 

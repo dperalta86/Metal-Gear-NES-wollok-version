@@ -10,7 +10,7 @@ import src.system.system.config
 import src.levels.areaManager.*
 import src.levels.level01.*
 import src.system.system.levelsManager
-import src.characters.snake.*
+import src.characters.snake.snake.*
 import src.ui.visual.*
 import src.levels.factory.*
 

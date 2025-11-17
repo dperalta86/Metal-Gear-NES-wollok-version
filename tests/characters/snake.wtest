@@ -1,5 +1,5 @@
 import src.system.colissions.*
-import src.characters.snake.solidSnake
+import src.characters.snake.snake.solidSnake
 import wollok.game.*
 import src.inputManager.movements.*
 

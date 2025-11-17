@@ -2,7 +2,7 @@ import src.utils.log.log
 import src.ui.hud.hud
 import src.system.objectPool.objectPool
 import src.system.colissions.colissionHandler
-import src.characters.snake.solidSnake
+import src.characters.snake.snake.solidSnake
 import src.levels.areaManager.*
 import src.ui.visual.*
 

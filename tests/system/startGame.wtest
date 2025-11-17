@@ -6,7 +6,7 @@
 import wollok.game.*
 import src.system.system.*
 import src.ui.visual.*
-import src.characters.snake.*
+import src.characters.snake.snake.*
 import src.inputManager.inputManager.keyboardManager
 
  describe "El juego inicia correctamente, cargando configuraciones y visual iniciales" {

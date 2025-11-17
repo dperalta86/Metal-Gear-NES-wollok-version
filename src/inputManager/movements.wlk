@@ -1,5 +1,5 @@
 import src.system.gameStatus.gameCurrentStatus
-import src.characters.snake.solidSnake
+import src.characters.snake.snake.solidSnake
 import wollok.game.*
 import src.system.colissions.colissionHandler
 import src.levels.level01.*

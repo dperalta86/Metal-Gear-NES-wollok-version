@@ -9,19 +9,26 @@ import src.inputManager.movements.*
 class Bullet inherits GameObject{
     var gunOwner = null // TODO: o por defecto snake, o crear objeto emptyGun
     var active = false
-    method image() = gunOwner.lastMovement() + "_bullet.png"
+    var lastMovement = ""
 
-    method fire(character, isVisible){
+    method lastMovement(movement) {
+        lastMovement = movement
+    }
+    method image() = lastMovement + "_bullet.png"
+
+    method fire(character){
         if (!active){
             gunOwner = character
+            position = gunOwner.position()
+            lastMovement = gunOwner.lastMovement()
             active = true            
             canBeCollided = true
             colissionHandler.register(self)
-            position = gunOwner.position()
-            if(isVisible){
-                game.addVisual(self)
-            }
+            game.addVisual(self)            
             game.schedule(300, { self.move() })
+            game.schedule(600, { self.move() })
+            game.schedule(900, { self.move() })
+            game.schedule(1200, { self.stop() })            
         }
     }
 
@@ -33,12 +40,15 @@ class Bullet inherits GameObject{
     }
 
     method move(){
-        if(gunOwner.lastMovement() == "left") { movement.moveLeft(self) }
-        if(gunOwner.lastMovement() == "right") { movement.moveRight(self) }
-        if(gunOwner.lastMovement() == "up") { movement.moveUp(self) }
-        if(gunOwner.lastMovement() == "down") { movement.moveDown(self) }
+        if(lastMovement == "left") { movement.moveLeft(self) }
+        if(lastMovement == "right") { movement.moveRight(self) }
+        if(lastMovement == "up") { movement.moveUp(self) }
+        if(lastMovement == "down") { movement.moveDown(self) }
     }
 
+    method moveTo(newPos) {
+        position = newPos
+    }
     override method collidedBy(character){
         character.takeDamage(50)
     }
@@ -60,10 +70,9 @@ object bulletManager{
     ]
 
     method fire(character, bullets) {
-        var isVisible = true
-        bullets.first().fire(character, isVisible) //La primer bala es inmediata
+        bullets.first().fire(character) //La primer bala es inmediata
         bullets.drop(1).forEach({ bullet =>      
-            game.schedule(300, { bullet.fire(character, isVisible) })            
+            game.schedule(300, { bullet.fire(character) })            
         })        
     }
 }

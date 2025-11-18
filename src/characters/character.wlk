@@ -51,7 +51,7 @@ class Character inherits GameObject {
             health = (health - amount).max(0)
             log.debug(self, utils.getClassName(self) + " recibió " + amount + " de daño. Vida: " + health)
             
-            if (health <= 0) {
+            if (health <= 0 && isAlive) {
                 self.die()
             }
         }      

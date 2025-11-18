@@ -34,7 +34,7 @@ class Pickable inherits GameObject {
     /*
      * Se llama cuando el ítem "recibe" daño (override en subclases)
      */
-    method damageDecreases(character, amount) {}
+    method damageDecreases(character, amount) = amount
 }
 
 class Box inherits Pickable {

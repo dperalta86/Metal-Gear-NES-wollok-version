@@ -8,6 +8,7 @@ object soundManager {
         */
         const mainSound = game.sound("427513__carloscarty__chiptune-one.wav")
         mainSound.shouldLoop(true)
+        mainSound.volume(0.5)
         mainSound.play()
         log.debug(self, "Inicia musica de fondo en loop.")
     }

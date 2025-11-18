@@ -26,8 +26,8 @@ const bullet = new Visual(
     position = game.origin()
 )
 
-const snake_hud = new Visual(
-    image = "snake_hud.png",
+const text_hud = new Visual(
+    image = "hud.png",
     position = game.at(0,0)
 )
 

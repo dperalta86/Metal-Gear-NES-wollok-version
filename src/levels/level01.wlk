@@ -17,7 +17,7 @@ class Area {
      * RÁPIDO: ~50-100ms vs 10 segundos antes
      */
     method load() {
-        log.info(self, "\n>>> Cargando " + name + "...")
+        log.info(self, ">>> Cargando " + name + "...")
         
         // 1. Cargar fondo
         game.addVisual(background)
@@ -44,7 +44,7 @@ class Area {
             game.removeVisual(visual) 
         }
         
-        log.info(self, "<<< " + name + " descargada\n")
+        log.info(self, "<<< " + name + " descargada")
     }
     
     method addChangeEvent(event) {

@@ -17,8 +17,8 @@ object hud {
     method drawHearts(){
         currentHearts.forEach { h =>
             game.addVisual(h)}
-        if(!game.hasVisual(snake_hud)){
-            game.addVisual(snake_hud)
+        if(!game.hasVisual(text_hud)){
+            game.addVisual(text_hud)
         }
     }
 

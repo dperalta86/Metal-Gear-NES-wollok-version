@@ -3,6 +3,7 @@ import src.characters.guards.guards.Guard
 
 class PatrollGuard inherits Guard {
     // Repito movimientos horizontales para darle mas peso en la probabilidad...
+    var nextMove
     const movements = [
         { movement.moveUp(self) },
         { movement.moveDown(self) },
@@ -13,7 +14,7 @@ class PatrollGuard inherits Guard {
     ]
     
     override method move() {
-        const nextMove = movements.anyOne()
+        nextMove = movements.anyOne()
         nextMove.apply()
     }
 }

@@ -6,7 +6,7 @@ import src.gameObject.GameObject
 class Bullet inherits GameObject{
     var gunDirection = "right"
     var active = false
-    override method image() = gunDirection + "_bullets.gif"
+    method image() = gunDirection + "_bullets.gif"
 
     method fire(pos, direction, isVisible){
         if (!active){

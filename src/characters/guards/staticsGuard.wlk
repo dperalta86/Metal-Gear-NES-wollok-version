@@ -7,8 +7,8 @@ class StaticGuard inherits Guard {
     // Comportamiento polimórfico (Interfaz)
     override method move(){
         moveCount +=1
-        // Cada 20 ticks realiza movimiento, justo 20, si se "pasa" es porque ya está realizando el movimiento
-        if(moveCount==20){
+        // Cada 20 ticks realiza movimiento, justo 16, si se "pasa" es porque ya está realizando el movimiento
+        if(moveCount==16){
             self.getMove()
         }
     } 

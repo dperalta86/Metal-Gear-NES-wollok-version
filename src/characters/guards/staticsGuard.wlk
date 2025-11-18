@@ -7,7 +7,7 @@ class StaticGuard inherits Guard {
     // Comportamiento polimórfico (Interfaz)
     override method move(){
         moveCount +=1
-        // justo 20, si se "pasa" es porque ya está realizando el movimiento
+        // Cada 20 ticks realiza movimiento, justo 20, si se "pasa" es porque ya está realizando el movimiento
         if(moveCount==20){
             self.getMove()
         }
@@ -24,6 +24,4 @@ class StaticGuard inherits Guard {
         game.schedule(3500, {movement.moveUp(self)})
         moveCount = 0 // Reinicio el contador      
     }
-    override method verifyDetection() { } 
-    override method updateState() { }
 }

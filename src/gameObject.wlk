@@ -10,6 +10,8 @@ class GameObject {
     var isActive = false
     const isCollidable = false
     const isPickable = false
+
+    // Si es colisionable (isCollidable = true) puede estar "desactivado" para ser colisionado
     var canBeCollided = false 
     
     method image() // Abstract - debe implementarse en subclases
@@ -40,6 +42,6 @@ class GameObject {
     method collidedBy(character) {
         log.debug(self, "colisionado por " + character)
     }
-    // Hook: actualización por frame o tick
+    // Actualización por tick
     method update() {}
 }

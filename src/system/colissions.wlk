@@ -16,7 +16,7 @@ object colissionHandler {
     method register(obj) {
         if (obj != null && obj.isCollidable() && !registered.contains(obj)) {
             registered.add(obj)
-            game.whenCollideDo(obj, { gameObject => gameObject.collidedBy(obj) })
+            game.onCollideDo(obj, { gameObject => gameObject.collidedBy(obj) })
         }
     }
 

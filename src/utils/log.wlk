@@ -1,6 +1,5 @@
 import src.utils.utils.utils
 
-
 object log {
     var counter = 0
 

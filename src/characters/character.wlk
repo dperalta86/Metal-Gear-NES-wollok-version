@@ -74,12 +74,13 @@ class Character inherits GameObject {
      * Manejo de colisiones
      */
     override method collidedBy(other) {
-        if (other.isActive() && other.canBeCollided()) {
-            self.takeDamage(20)
+        if (other.isActive() && other.canBeCollided()) {            
             if(utils.getClassName(other) != "Bullet"){
                 position = lastPosition
+                self.takeDamage(20)
+            }else{
+                self.takeDamage(50)
             }
-
         }
     }
 }

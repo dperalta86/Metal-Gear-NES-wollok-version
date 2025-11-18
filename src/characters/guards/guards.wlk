@@ -14,9 +14,8 @@ class Guard inherits Character {
         return "dead_guard.png"
     }
 
-    // Queda "genérico", ver si directamente lo personalizamos a snake...
     override method collidedBy(other) {
-        if(utils.getClassName(other) != "Health"){
+        if(!other.isPickable()){
             super(other)
         } 
     }
@@ -29,6 +28,4 @@ class Guard inherits Character {
     
     // Comportamiento polimórfico (Interfaz) 
     method move()
-    method verifyDetection() // Lógica para detectar al jugador    
-    method updateState() // Lógica para actualizar el estado    
 }

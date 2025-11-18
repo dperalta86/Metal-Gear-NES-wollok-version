@@ -32,8 +32,6 @@ object gameManager {
             console.println("🎮 Game started")
             game.start()
         }
-
-        // TODO: resetar variables globales del juego
     }
 
     // --------------------

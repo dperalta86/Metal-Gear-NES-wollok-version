@@ -31,6 +31,20 @@ UTN - Facultad Regional Buenos Aires - Materia Paradigmas de Programación
 
 ---
 
+## 🎥 Video Explicativo
+
+¿Querés ver el juego en acción y entender cómo funciona? Mirá nuestro video de presentación:
+
+[![Metal Gear NES - Video Presentación](https://img.shields.io/badge/▶️_Ver_Video-YouTube-red?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=zIRBjMeFjro)
+
+En el video explicamos:
+- 🎮 Gameplay completo del nivel 1
+- 🏗️ Arquitectura y patrones de diseño implementados
+- 💡 Decisiones técnicas clave (Object Pool, Factory Pattern)
+- 🎯 Conceptos de POO aplicados
+
+---
+
 ## 🎮 Cómo Jugar
 
 ### 🎯 Objetivo Principal
@@ -279,6 +293,7 @@ src/
 ## 📚 Documentación Adicional
 
 - **Documentación completa del proyecto**: [docs/project.md](docs/project.md)
+- **Bitácora del desarrollo**: [docs/bitacora.md](docs/bitacora.md)
 - **Diagrama UML actualizado** (17/10/25): [docs/uml/actual.png](docs/uml/actual.png)
 - **Documentación oficial de Wollok**: [www.wollok.org](https://www.wollok.org/)
 
